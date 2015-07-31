@@ -4,6 +4,7 @@
     <title>CourseTackle</title>
     <link rel='stylesheet' href='stylesheets/index.css' />
       <link href="http://fonts.googleapis.com/css?family=Lato:100,400,300" rel='stylesheet' type='text/css'>
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
   </head>
   <header>
       <span id="home_title">CourseTackle</span>
@@ -18,6 +19,18 @@
 		<span id="password">
 			<input type="password" name="password" onclick="this.focus();this.select()"/>
 		</span>
+    <!-- Add where you want your sign-in button to render -->
+    <div id="signinButton">
+      <span class="g-signin"
+        data-scope="https://www.googleapis.com/auth/plus.login"
+        data-clientid="72300732710-h8nos27som0091shjl9j5kmn3dsrvb1g.apps.googleusercontent.com"
+        data-redirecturi="http://localhost:9500/newfeed"
+        data-accesstype="online"
+        data-cookiepolicy="single_host_origin"
+        data-callback="signInCallback">
+      </span>
+    </div>
+    <div id="result"></div>
 		<span id="login_submit">
 			<button>Log In</button>
 			<button><a href="/signup">Sign Up</a></button>

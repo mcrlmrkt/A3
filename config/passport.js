@@ -1,4 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy;
+var GooglePlusStrategy = require('passport-google-plus');
 var bCrypt = require('bcrypt-nodejs');
 
 var User = require('../app/models/user');
@@ -67,6 +68,16 @@ module.exports = function(passport) {
 				});
 			});
 		}
+	));
+
+	passport.use('local-googlePlus-login', new GooglePlusStrategy({
+	    clientId: 'YOUR_CLIENT_ID',
+	    clientSecret: 'YOUR_CLIENT_SECRET'
+	  },
+	  function(tokens, profile, done) {
+	    // Create or update user, call done() when complete... 
+	    done(null, profile, tokens);
+	  }
 	));
 
 	var isValidPassword = function(user, password){

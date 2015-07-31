@@ -10,6 +10,11 @@ module.exports = function(app, passport){
 		failureFlash: true
 	}));
 
+	app.post('/auth/google/callback', passport.authenticate('local-googlePlus-login'), function(req, res) {
+	    // Return user back to client 
+	    res.send(req.user);
+	});
+
 	app.get('/signup', function(req, res){
 		res.render('signup.ejs', {message: req.flash('signupMessage')});
 	});
