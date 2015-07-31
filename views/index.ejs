@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CourseTackle</title>
+    <link rel='stylesheet' href='stylesheets/index.css' />
+      <link href="http://fonts.googleapis.com/css?family=Lato:100,400,300" rel='stylesheet' type='text/css'>
+  </head>
+  <header>
+      <span id="home_title">CourseTackle</span>
+  </header>
+  <body>
+    <% if (message.length > 0) { %>
+    <div> <%= message %> </div>
+  <% } %>
+    <form id="home_login" action="/" method="post">
+		<span id="login">
+			<input type="text" maxlength="10" value="username" name="username" onclick="this.focus();this.select()"/></span>
+		<span id="password">
+			<input type="password" name="password" onclick="this.focus();this.select()"/>
+		</span>
+		<span id="login_submit">
+			<button>Log In</button>
+			<button><a href="/signup">Sign Up</a></button>
+		</span>
+    </form>
+
+
+  </body>
+
+</html>

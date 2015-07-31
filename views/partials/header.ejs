@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/header.css' />
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,400,300" rel='stylesheet' type='text/css'>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<header>
+<div id="navigation">
+		<span id="title" width="10%">
+			CourseTackle
+		</span>
+		<span class="links">
+			<a href="/newsfeed">Newsfeed</a>
+		</span>
+		<span class="links">
+			<a href="/profile">Profile</a>
+		</span>
+		<span class="links">
+			<a href="/course">Course</a>
+		</span>
+		<span class="search">
+			<textarea id="search_bar" onclick="this.focus();this.select()">search...</textarea>
+		</span>
+		<span class="dropdown">
+
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Menu
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="/course">Settings</a></li>
+                    <li><a href="/">Logout</a></li>
+                </ul>
+
+		</span>
+</div>
+</header>
+</html>
