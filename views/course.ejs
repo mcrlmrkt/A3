@@ -1,20 +1,41 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="http://fonts.googleapis.com/css?family=Lato:100,400,300" rel='stylesheet' type='text/css'>
-</head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,400,300' rel='stylesheet' type='text/css'>
+	<script src="/javascripts/ct.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <title>CourseTackle</title>
 
-<header>
+    <header>
     <% include partials/header.ejs %>
 </header>
 
 <body>
-
+	<div id="left_panel" class="main" onload="setup_profile()">
+		<span id="display_pic">
+			<img src="/images/default.jpg" id="dp">
+		</span>
+		<span id="username_display">default</span>
+		<span id="name_display">default</span>
+		<span id="email_display">default</span>
+		<span id="feild_display">default</span>
+		<span id="friends">friends:</span>
+	</div>
+	<div id="courses" class="main">
+		<h4>courses</h4>
+		<span id="taken" class="post">
+			<text id="add_course_taken" class="add">+</text>
+			courses you've taken
+		</span><span id="to_take" class="post">
+			<text id="add_course_to_take" class="add">+</text>
+			courses you will take
+		</span>
+	</div>
 </body>
 
 <footer>
     <% include partials/footer.ejs %>
 </footer>
 </html>
+

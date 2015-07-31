@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <link rel='stylesheet' href='stylesheets/index.css' />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:100,400,300' rel='stylesheet' type='text/css'>
 	<script src="/javascripts/ct.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -13,20 +13,19 @@
 			CourseTackle
 		</span>
 		<span class="links">
-			<button onclick="home()">home</button>
+			<a href='/newsfeed'>home</a>
 		</span>
 		<span class="links">
-			<button onclick="profile()">profile</button>
+			<a href='/profile'>profile</a>
 		</span>
 		<span class="links">
-			<button onclick="courses()">courses</button>
+			<a href='/course'>courses</a>
 		</span>
 		<span class="search">
 			<textarea id="search_bar" onclick="this.focus();this.select()">search...</textarea>
 		</span>
 		<span class="links">
-			<a href="/">
-			<button>sign out</button></a>
+			<a href='/'>sign out</a>
 		</span>
 	</div> -->
     <% include partials/header.ejs %>
@@ -34,7 +33,6 @@
 <body>
 	<div id="left_panel" class="main" onload="setup_profile()">
 		<span id="display_pic">
-			<input type="file" onchange="previewFile()"><br>
 			<img src="/images/default.jpg" id="dp">
 		</span>
 		<span id="username_display">default</span>
@@ -42,45 +40,6 @@
 		<span id="email_display">default</span>
 		<span id="feild_display">default</span>
 		<span id="friends">friends:</span>
-	</div>
-	<div id="news_feed" class="main">
-		<h4>news</h4>
-		<span class="news post">
-			<table>
-				<tr>
-					<td class="news_content">
-						news
-					</td>
-					<td class="rating">
-						4
-					</td>
-				</tr>
-			</table>
-		</span>
-		<span class="news post">
-			<table>
-				<tr>
-					<td class="news_content">
-						news
-					</td>
-					<td class="rating">
-						3
-					</td>
-				</tr>
-			</table>
-		</span>
-		<span class="news post">
-			<table>
-				<tr>
-					<td class="news_content">
-						news
-					</td>
-					<td class="rating">
-						1
-					</td>
-				</tr>
-			</table>
-		</span>
 	</div>
 	<div id="wall" class="main">
 		<h4>wall</h4>
@@ -92,19 +51,11 @@
 			user comments
 		</span>
 	</div>
-	<div id="courses" class="main">
-		<h4>courses</h4>
-		<span id="taken" class="post">
-			<text id="add_course_taken" class="add">+</text>
-			courses you've taken
-		</span><span id="to_take" class="post">
-			<text id="add_course_to_take" class="add">+</text>
-			courses you will take
-		</span>
-	</div>
 </body>
+
 
 <footer>
     <% include partials/footer.ejs %>
 </footer>
 </html>
+

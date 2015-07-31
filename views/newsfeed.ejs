@@ -1,27 +1,70 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="http://fonts.googleapis.com/css?family=Lato:100,400,300" rel='stylesheet' type='text/css'>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,400,300' rel='stylesheet' type='text/css'>
+	<script src="/javascripts/ct.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <title>CourseTackle</title>
 </head>
 
 <header>
     <% include partials/header.ejs %>
 </header>
-
 <body>
-
+	<div id="left_panel" class="main" onload="setup_profile()">
+		<span id="display_pic">
+			<img src="/images/default.jpg" id="dp">
+		</span>
+		<span id="username_display">default</span>
+		<span id="name_display">default</span>
+		<span id="email_display">default</span>
+		<span id="feild_display">default</span>
+		<span id="friends">friends:</span>
+	</div>
+	<div id="news_feed" class="main">
+		<h4>news</h4>
+		<span class="news post">
+			<table>
+				<tr>
+					<td class="news_content">
+						news
+					</td>
+					<td class="rating">
+						4
+					</td>
+				</tr>
+			</table>
+		</span>
+		<span class="news post">
+			<table>
+				<tr>
+					<td class="news_content">
+						news
+					</td>
+					<td class="rating">
+						3
+					</td>
+				</tr>
+			</table>
+		</span>
+		<span class="news post">
+			<table>
+				<tr>
+					<td class="news_content">
+						news
+					</td>
+					<td class="rating">
+						1
+					</td>
+				</tr>
+			</table>
+		</span>
+	</div>
 </body>
-
 <footer>
     <% include partials/footer.ejs %>
 </footer>
 </html>
+
+

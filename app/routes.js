@@ -21,16 +21,17 @@ module.exports = function(app, passport){
 		failureFlash: true
 	}));
 		
-	app.get('/profile', isLoggedIn, function(req, res){
-		res.render('profile.ejs', { user: req.user});
+	app.get('/newsfeed', isLoggedIn, function(req, res, next) {
+		console.log(User);
+	    res.render('newsfeed.ejs', { title: 'Newsfeed'});
 	});
 
-	app.get('/newsfeed', isLoggedIn, function(req, res){
-		res.render('newsfeed.ejs', { user: req.user});
+	app.get('/profile', isLoggedIn, function(req, res){
+		res.render('profile.ejs', { title: 'Profile'});
 	});
 
 	app.get('/course', isLoggedIn, function(req, res){
-		res.render('course.ejs', { user: req.user});
+		res.render('course.ejs', { title: 'Courses'});
 	});
 
 	app.get('/logout', function(req, res){
@@ -43,6 +44,5 @@ function isLoggedIn(req, res, next) {
 	if(req.isAuthenticated()) {
 		return next();
 	}
-
 	res.redirect('/');
 }
