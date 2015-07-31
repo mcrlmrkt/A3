@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6{
 	font-weight: 100;
 }
 body{
-	background: #2A4046;
+	background: #2E3F45;
 	color:black;
 	font-family: 'Lato', sans-serif;
 	font-weight: 100;
@@ -122,11 +122,9 @@ a:hover{
 }
 #wall{
 	width: 65%;
-	display: none;
 }
 #courses{
 	width: 65%;
-	display: none;
 }
 #wall_entry{
 	background: none;
