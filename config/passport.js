@@ -1,4 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy_LogIn = require('passport-local').Strategy_LogIn;
 var bCrypt = require('bcrypt-nodejs');
 
 var User = require('../app/models/user');
@@ -18,14 +19,9 @@ module.exports = function(passport) {
 	passport.use('local-signup', new LocalStrategy({
 		usernameField: 'username',
 		passwordField: 'password',
-		firstNameField: 'firstName',
-		lastNameField: 'lastName',
-		fieldField: 'field',
-		emailField: 'email',
 		passReqToCallback: true
 	},
-	function(req, username, password, 
-		firstName, lastName, field, email, done){
+	function(req, username, password, done){
 		process.nextTick(function(){
 			//look up in db where username matches the username
 			User.findOne({'local.username': username}, function(err, user){
@@ -37,11 +33,11 @@ module.exports = function(passport) {
 					var newUser = new User();
 					newUser.local.username = username;
 					newUser.local.password = createHash(password);
-					newUser.local.firstName = firstName;
-					newUser.local.lastName = lastName;
-					newUser.local.field = field;
-					newUser.local.email = email;
-
+					newUser.local.firstName = req.body.firstName;
+					newUser.local.lastName = req.body.lastName;
+					newUser.local.field = req.body.field;
+					newUser.local.email = req.body.email;
+					console.log(newUser);
 					newUser.save(function(err){
 						if(err)
 							throw err;
@@ -58,25 +54,26 @@ module.exports = function(passport) {
 			passwordField: 'password',
 			passReqToCallback: true
 		},
-		function(req, username, password, firstName, lastName, field, email, done){
+		function(req, username, password, done){
 			process.nextTick(function(){
 				User.findOne({ 'local.username': username}, function(err, user){
+					console.log(user);
 					if(err)
 						return done(err);
 					if(!user)
 						return done(null, false, req.flash('loginMessage', 'No User found'));
-					if(isValidPassword(username, password)){
-						return done(null, false, req.flash('loginMessage', 'inavalid password'));
+					if(!isValidPassword(user, password)){
+						return done(null, false, req.flash('loginMessage', 'Invalid password'));
 					}
 					return done(null, user);
-
 				});
 			});
 		}
 	));
 
 	var isValidPassword = function(user, password){
-        return bCrypt.compareSync(password, user.password);
+		console.log(password + " " + user.local.password);
+        return bCrypt.compareSync(password, user.local.password);
     };
     // Generates hash using bCrypt
     var createHash = function(password){

@@ -22,21 +22,21 @@ module.exports = function(app, passport){
 	}));
 		
 	app.get('/profile', isLoggedIn, function(req, res){
-		res.render('profile.ejs', { user: req.user})
+		res.render('profile.ejs', { user: req.user});
 	});
 
-	app.get('/newsfeed', function(req, res){
-		res.render('newsfeed.ejs')
+	app.get('/newsfeed', isLoggedIn, function(req, res){
+		res.render('newsfeed.ejs', { user: req.user});
 	});
 
 	app.get('/course', isLoggedIn, function(req, res){
-		res.render('course.ejs', { user: req.user})
-	})
+		res.render('course.ejs', { user: req.user});
+	});
 
 	app.get('/logout', function(req, res){
 		req.logout();
 		res.redirect('/');
-	})
+	});
 };
 
 function isLoggedIn(req, res, next) {
