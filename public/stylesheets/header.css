@@ -7,7 +7,7 @@ h1, h2, h3, h4, h5, h6{
     font-weight: 100;
 }
 body{
-    background: #2A4046;
+    background: #2E3F45;
     color:black;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
@@ -23,14 +23,8 @@ body{
     padding-left: 5%;
     padding-right: 5%;
 }
-#navigation img{
-    margin-left:5%;
-    background: #1A2A2F;
-    border-radius: 100px;
-    padding: 1%;
-}
 #navigation button{
-    color:black;
+    color:#FFA300;
     background: #2E3F45;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
@@ -38,29 +32,32 @@ body{
     border: none;
 }
 #navigation button:hover{
-    color: #FFA300;
+    color: #B97800;
     cursor: pointer;
+}
+a:link{
+    color:#FFA300;
+    text-decoration: none;
+}
+a:visited{
+    color:#FFA300;
+    text-decoration: none;
+}
+a:hover{
+    color:#B97800;
+    text-decoration: none;
 }
 .links{
     padding: 3%;
+}
+.links:hover{
+    color:#B97800;
 }
 #title{
     color: #FFA300;
     text-align: left;
     font-size: 4vw;
     font-weight: 300;
-}
-a:link{
-    color:black;
-    text-decoration: none;
-}
-a:visited{
-    color:black;
-    text-decoration: none;
-}
-a:hover{
-    color:#FFA300;
-    text-decoration: none;
 }
 #search_bar{
     background: white;
@@ -74,27 +71,5 @@ a:hover{
     overflow: hidden;
     border: none;
 }
-.main{
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    padding-top:5%;
-    text-align: left;
-}
-#left_panel{
-    width: 30%;
-    margin-left:1%;
-    text-align: center;
-    font-weight: 300;
-    color: #FFA300;
-}
-#username{
-    font-size: 2.5vw;
-    color: white;
-}
-#left_panel span{
-    display: block;
-}
-
 
 

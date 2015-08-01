@@ -37,7 +37,6 @@ module.exports = function(passport) {
 					newUser.local.lastName = req.body.lastName;
 					newUser.local.field = req.body.field;
 					newUser.local.email = req.body.email;
-					console.log(newUser);
 					newUser.save(function(err){
 						if(err)
 							throw err;
@@ -56,7 +55,6 @@ module.exports = function(passport) {
 		function(req, username, password, done){
 			process.nextTick(function(){
 				User.findOne({ 'local.username': username}, function(err, user){
-					console.log(user);
 					if(err)
 						return done(err);
 					if(!user)
@@ -64,6 +62,7 @@ module.exports = function(passport) {
 					if(!isValidPassword(user, password)){
 						return done(null, false, req.flash('loginMessage', 'Invalid password'));
 					}
+					console.log('THIS IS THE USER: ' );
 					return done(null, user);
 				});
 			});
@@ -81,7 +80,6 @@ module.exports = function(passport) {
 	));
 
 	var isValidPassword = function(user, password){
-		console.log(password + " " + user.local.password);
         return bCrypt.compareSync(password, user.local.password);
     };
     // Generates hash using bCrypt

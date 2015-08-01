@@ -15,7 +15,7 @@
     "cookie-parser": "latest",
     "ejs": "latest",
     "express": "^4.13.1",
-    "express-session": "latest",
+    "express-session": "1.4.0",
     "mongoose": "latest",
     "morgan": "^1.6.1",
     "passport": "^0.2.2",
