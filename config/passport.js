@@ -71,8 +71,8 @@ module.exports = function(passport) {
 	));
 
 	passport.use('local-googlePlus-login', new GooglePlusStrategy({
-	    clientId: 'YOUR_CLIENT_ID',
-	    clientSecret: 'YOUR_CLIENT_SECRET'
+	    clientId: '72300732710-h8nos27som0091shjl9j5kmn3dsrvb1g.apps.googleusercontent.com',
+	    clientSecret: 'LC4vHOn-o6QHKg93ddcCYb4A'
 	  },
 	  function(tokens, profile, done) {
 	    // Create or update user, call done() when complete... 

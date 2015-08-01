@@ -28,6 +28,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+require('./app/routes.js')(app, passport);
+
 function signInCallback(authResult) {
   if (authResult.code) {
     $.post('/auth/google/callback', { code: authResult.code})
@@ -38,11 +43,6 @@ function signInCallback(authResult) {
     console.log('There was an error: ' + authResult.error);
   }
 };
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-require('./app/routes.js')(app, passport);
 
 app.listen(port);
 console.log('Server running on port: ' + port);
