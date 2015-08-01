@@ -12,25 +12,18 @@
 </header>
 
 <body>
-	<div id="left_panel" class="main" onload="setup_profile()">
-		<span id="display_pic">
-			<img src="/images/default.jpg" id="dp">
-		</span>
-		<span id="username_display">default</span>
-		<span id="name_display">default</span>
-		<span id="email_display">default</span>
-		<span id="feild_display">default</span>
-		<span id="friends">friends:</span>
-	</div>
-	<div id="courses" class="main">
-		<h4>courses</h4>
-		<span id="taken" class="post">
-			<text id="add_course_taken" class="add">+</text>
-			courses you've taken
-		</span><span id="to_take" class="post">
-			<text id="add_course_to_take" class="add">+</text>
-			courses you will take
-		</span>
+	<div class="container">
+    	<% include partials/left_panel.ejs %>
+		<div id="courses" class="main">
+			<h4>courses</h4>
+			<span id="taken" class="post">
+				<text id="add_course_taken" class="add">+</text>
+				courses you've taken
+			</span><span id="to_take" class="post">
+				<text id="add_course_to_take" class="add">+</text>
+				courses you will take
+			</span>
+		</div>
 	</div>
 </body>
 

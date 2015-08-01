@@ -1,8 +1,22 @@
+html{
+	height:100%;
+	width: 100%;
+	overflow: scroll;
+}
+body{
+	background: #2E3F45;
+	color:black;
+	font-family: 'Lato', sans-serif;
+	font-weight: 100;
+	font-size: 1.2vw;
+	text-align: center;
+}
 footer{
     font-family: 'Lato', sans-serif;
     font-weight: 100;
     font-size: 1.2vw;
     text-align: center;
     color: #FFA300;
-    background: #2A4046;
+    background: #2E3F45;
+    vertical-align: bottom;
 }

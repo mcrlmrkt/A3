@@ -1,0 +1,36 @@
+html, body, h1, h4, button, table, textarea, span{
+	margin:0;
+	padding: 0;
+}
+body{
+	background: #2E3F45;
+	color:black;
+	font-family: 'Lato', sans-serif;
+	font-weight: 100;
+	font-size: 1.2vw;
+	text-align: center;
+}
+h1, h2, h3, h4, h5, h6{
+	color:white;
+	font-weight: 100;
+}
+#left_panel{
+	width: 30%;
+	margin-left:1%;
+	text-align: center;
+	font-weight: 300;
+	border:2px sold black;
+	color: #FFA300;
+}
+#username_display{
+	font-size: 2.5vw;
+	color: white;
+}
+#left_panel span{
+	display: block;
+}
+#display_pic img{
+	border-radius: 100%;
+	width: 20vw;
+	height: 20vw;
+}

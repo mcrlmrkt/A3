@@ -1,0 +1,20 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/left_panel.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,400,300' rel='stylesheet' type='text/css'>
+	<script src="/javascripts/ct.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <title>CourseTackle</title>
+</head>
+	<div id="left_panel" class="main">
+		<span id="display_pic">
+			<img src="/images/default.jpg" id="dp">
+		</span>
+		<span id="username_display"><%= user.local.username %></span>
+		<span id="name_display"><%= user.local.firstName %>   <%= user.local.lastName %></span>
+		<span id="email_display"><%= user.local.email %></span>
+		<span id="feild_display"><%= user.local.field %></span>
+		<span id="friends">friends:</span>
+	</div>
+</html>

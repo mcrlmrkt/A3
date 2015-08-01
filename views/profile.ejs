@@ -8,48 +8,21 @@
     <title>CourseTackle</title>
 </head>
 <header>
-	<!--<div id="navigation">
-		<span id="title" width="10%">
-			CourseTackle
-		</span>
-		<span class="links">
-			<a href='/newsfeed'>home</a>
-		</span>
-		<span class="links">
-			<a href='/profile'>profile</a>
-		</span>
-		<span class="links">
-			<a href='/course'>courses</a>
-		</span>
-		<span class="search">
-			<textarea id="search_bar" onclick="this.focus();this.select()">search...</textarea>
-		</span>
-		<span class="links">
-			<a href='/'>sign out</a>
-		</span>
-	</div> -->
     <% include partials/header.ejs %>
 </header>
 <body>
-	<div id="left_panel" class="main" onload="setup_profile()">
-		<span id="display_pic">
-			<img src="/images/default.jpg" id="dp">
-		</span>
-		<span id="username_display">default</span>
-		<span id="name_display">default</span>
-		<span id="email_display">default</span>
-		<span id="feild_display">default</span>
-		<span id="friends">friends:</span>
-	</div>
-	<div id="wall" class="main">
-		<h4>wall</h4>
-		<input type="text" value="say something here..." id="wall_entry" onclick="this.focus();this.select()"/>
-		<button id="wall_submit">Submit</button>
-		<span class="wall_post post">
-			user comments
-		</span><span class="wall_post post">
-			user comments
-		</span>
+	<div class="container">
+    	<% include partials/left_panel.ejs %>
+		<div id="wall" class="main">
+			<h4>wall</h4>
+			<input type="text" value="say something here..." id="wall_entry" onclick="this.focus();this.select()"/>
+			<button id="wall_submit">Submit</button>
+			<span class="wall_post post">
+				user comments
+			</span><span class="wall_post post">
+				user comments
+			</span>
+		</div>
 	</div>
 </body>
 

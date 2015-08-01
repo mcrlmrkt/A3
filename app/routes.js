@@ -1,4 +1,5 @@
 var User = require('./models/user');
+
 module.exports = function(app, passport){
 	app.get('/', function(req, res){
 		res.render('index.ejs', { message: req.flash('loginMessage')});
@@ -27,16 +28,21 @@ module.exports = function(app, passport){
 	}));
 		
 	app.get('/newsfeed', isLoggedIn, function(req, res, next) {
-		console.log(User);
-	    res.render('newsfeed.ejs', { title: 'Newsfeed'});
+		res.render('./newsfeed.ejs', 
+			{	title: 'Course Tackle - News Feed',
+		 		user: req.user });
 	});
 
 	app.get('/profile', isLoggedIn, function(req, res){
-		res.render('profile.ejs', { title: 'Profile'});
+		res.render('./profile.ejs', 
+			{ title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+		 		 user: req.user });
 	});
 
 	app.get('/course', isLoggedIn, function(req, res){
-		res.render('course.ejs', { title: 'Courses'});
+		res.render('./course.ejs', { 
+				title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+		 		user:req.user});
 	});
 
 	app.get('/logout', function(req, res){
@@ -46,8 +52,10 @@ module.exports = function(app, passport){
 };
 
 function isLoggedIn(req, res, next) {
-	if(req.isAuthenticated()) {
+	console.log('THIS IS THE SESSION BEFORE: ' + req.session);
+	if(req.isAuthenticated()){
 		return next();
 	}
+
 	res.redirect('/');
 }
