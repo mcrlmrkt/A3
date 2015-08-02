@@ -11,6 +11,8 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var flash = require('connect-flash');
 var util = require('util');
+var formidable = require('formidable');
+var fs = require('fs-extra');
 
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);

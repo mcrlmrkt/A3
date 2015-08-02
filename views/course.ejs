@@ -17,13 +17,36 @@
 		<div id="courses" class="main">
 			<h4>courses</h4>
 			<span id="taken" class="post">
-				<text id="add_course_taken" class="add">+</text>
-				courses you've taken
-			</span><span id="to_take" class="post">
-				<text id="add_course_to_take" class="add">+</text>
-				courses you will take
-			</span>
+				<text id="add_course_taken" class="add" onclick="courses()">+</text>
 		</div>
+	</div>
+	<div id="courses_taken">
+		<span id='close_courses'><button onclick="close_courses()">x</button></span>
+		<br>Please enter information about your course<br><br>
+	<form id="change_settings">
+		</span>
+    subject:
+		<span id="">
+			<input type="password" name="password" onclick="this.focus();this.select()"/>
+		</span>
+    course name:
+		<span id="">
+			<input type="text" name="firstName" onclick="this.focus();this.select()"/>
+		</span>
+    course code:
+		<span id="">
+			<input type="text" name="lastName" onclick="this.focus();this.select()"/>
+		</span>
+	description:
+		<span id="">
+			<input type="text" name="lastName" onclick="this.focus();this.select()"/>
+		</span>
+		<br><br>
+		<span id="confirm">
+			<button id="confirm_settings">Confirm</button>
+			<br><Br><br>
+		</span>
+		</form>
 	</div>
 </body>
 

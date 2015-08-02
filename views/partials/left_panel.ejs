@@ -7,14 +7,55 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <title>CourseTackle</title>
 </head>
+
 	<div id="left_panel" class="main">
 		<span id="display_pic">
+			<button class="setting" id="upload_circle" onclick="upload_dp()">+</button>
+				<input id="upload_dp" type='file' />
 			<img src="/images/default.jpg" id="dp">
 		</span>
-		<span id="username_display"><%= user.local.username %></span>
+		<span id="username_display">
+			<button class="setting" id="edit" onclick="settings()">
+				Edit
+			</button>
+			<%= user.local.username %></span>
 		<span id="name_display"><%= user.local.firstName %>   <%= user.local.lastName %></span>
 		<span id="email_display"><%= user.local.email %></span>
 		<span id="feild_display"><%= user.local.field %></span>
 		<span id="friends">friends:</span>
+	</div>
+
+	<div id="update_info">
+		<span id='close_settings'><button onclick="close_settings()">x</button></span>
+		<br>Please enter new information.
+		<br>Leave blank if you don't wish to change it.<br><br>
+	<form id="change_settings">
+		</span>
+    password:
+		<span id="settings_password">
+			<input type="password" name="password" onclick="this.focus();this.select()"/>
+		</span>
+    first name:
+		<span id="settings_firstName">
+			<input type="text" name="firstName" onclick="this.focus();this.select()"/>
+		</span>
+    last name:
+		<span id="settings_password">
+			<input type="text" name="lastName" onclick="this.focus();this.select()"/>
+		</span>
+	field of study:
+		<span id="settings_field">
+			<input type="text" name="field" onclick="this.focus();this.select()"/>
+		</span>
+    e-mail:
+		<span id="settings_email">
+			<input type="text" name="email" onclick="this.focus();this.select()"/>
+		</span>
+		<br><br>
+		<span id="confirm">
+			<button id="confirm_settings">Confirm</button>
+			<br><Br><br>
+		</span>
+		</form>
 	</div>
 </html>

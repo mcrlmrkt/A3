@@ -88,3 +88,13 @@ button:visited{
 #home_signup textarea{
     margin-top: 0;
 }
+#courses_taken{
+    float: auto;
+    position: absolute;
+    background: white;
+    top: 6vw;
+    padding: 2%;
+    border-radius: 10px;
+    left: 35%;
+    z-index: 2;
+}
