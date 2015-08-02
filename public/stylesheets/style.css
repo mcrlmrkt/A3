@@ -84,7 +84,8 @@ a:hover{
 }
 .container{
 	width: 100%;
-	height: 85%;
+	height: 88%;
+	overflow: scroll;
 }
 .main{
 	position: relative;
@@ -154,5 +155,50 @@ a:hover{
 }
 .add:hover{
 	color:black;
+	cursor: pointer;
+}
+#courses_taken{
+	text-align: center;
+	float: auto;
+	position: absolute;
+	background: white;
+	top: 6vw;
+	padding: 2%;
+	border-radius: 10px;
+	left: 35%;
+	z-index: 2;
+	//display: none;
+}
+#courses_taken input{
+	background: white;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 2vw;
+    color: #BEB5B3;
+    height: 2.5vw;
+    overflow: hidden;
+    border: 1px solid black;
+    width: 80%;
+    display: block;
+}
+#close_courses{
+	position: absolute;
+	right:5%;
+}
+#close_settings:hover{
+	color: #FFA300;
+	cursor: pointer;
+}
+#close_courses button{
+	background: none;
+	font-size: 1.2vw;
+	border: none;
+}
+#close_courses button:hover{
+	background: none;
+	font-size: 1.2vw;
+	border: none;
+	color: #FFA300;
 	cursor: pointer;
 }

@@ -37,6 +37,24 @@ module.exports = function(passport) {
 					newUser.local.lastName = req.body.lastName;
 					newUser.local.field = req.body.field;
 					newUser.local.email = req.body.email;
+
+					var newPassword = req.body.settings_password;
+					var newFirstName = req.body.settings_firstName;
+					var newLastName = req.body.settings_lastName;
+					var newField = req.body.settings_field;
+					var newEmail = req.body.settings_email;
+
+					if (newPassword != "")	
+						req.user.local.password = newPassword;
+					if (newFirstName != "")
+						req.user.local.firstName = newFirstName;
+					if (newLastName != "")
+						req.user.local.lastName = newLastName;
+					if (newField != "")
+						req.user.local.field = newField;
+					if (newEmail != "")	
+						req.user.local.email = newEmail;
+
 					newUser.save(function(err){
 						if(err)
 							throw err;

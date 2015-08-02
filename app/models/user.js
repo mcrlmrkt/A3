@@ -1,14 +1,15 @@
 var mongoose = require('mongoose');
+//var dp = new Image;
 
 var userSchema = mongoose.Schema({
 	local: {
-		username: String,
-		password: String,
+		username: {type: String, required: true, unique: true},
+		password: {type: String, required: true},
 		field: String,
 		firstName: String,
 		lastName: String,
-		field: String,
-		email: String
+		email: {type: String, required: true, unique: true, lowercase: true},
+		//photo: dp
 	}
 });
 
