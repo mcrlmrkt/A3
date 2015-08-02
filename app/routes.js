@@ -30,6 +30,7 @@ module.exports = function(app, passport){
 	}));
 		
 	app.get('/newsfeed', isLoggedIn, function(req, res, next) {
+		console.log("Get NewsFeed");
 		res.render('./newsfeed.ejs', 
 			{	title: 'Course Tackle - News Feed',
 		 		user: req.user });
@@ -59,7 +60,8 @@ function isLoggedIn(req, res, next) {
 	if(req.isAuthenticated()){
 		return next();
 	}
-
-	res.redirect('/');
+	else {
+		res.redirect('/');
+	}
 }
 
