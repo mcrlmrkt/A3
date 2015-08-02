@@ -97,7 +97,7 @@ module.exports = function(passport) {
 	  },
 	  function(req, token, profile, done) {
 	    // Create or update user, call done() when complete...
-		//console.log(util.inspect(profile, {showHidden: false, depth: null}));
+		console.log(util.inspect(profile, {showHidden: false, depth: null}));
 	    console.log("profile info: " + profile.name.givenName + profile.name.familyName + profile.id);
 	    var profileName = profile.name.givenName + profile.name.familyName + profile.id;
 		User.findOne({'local.username': profileName}, function(err, user){
@@ -111,12 +111,12 @@ module.exports = function(passport) {
 			else {
 				console.log("New user");
 				var newUser = new User();
-				newUser.local.username = profileName;
+				newUser.local.username = profileName || "TEMP";
 				newUser.local.password = createHash(profileName);
-				newUser.local.firstName = profile.name.familyName;
-				newUser.local.lastName = profile.name.givenName;
+				newUser.local.firstName = profile.name.familyName || "TEMP";
+				newUser.local.lastName = profile.name.givenName || "TEMP";
 				newUser.local.field = "TEMP";
-				newUser.local.email = "TEMP";
+				newUser.local.email = profile.email || "TEMP";
 				newUser.save(function(err){
 					console.log("Done insert");
 					if(err) {
