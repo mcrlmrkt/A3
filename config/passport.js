@@ -95,31 +95,33 @@ module.exports = function(passport) {
 	  function(tokens, profile, done) {
 	    // Create or update user, call done() when complete...
 		//console.log(util.inspect(profile, {showHidden: false, depth: null}));
-	    console.log("profile info: " + profile.id);
-	    console.log("profile info: " + profile.name.familyName);
-	    console.log("profile info: " + profile.email);
-	    console.log("profile info: " + profile.name.givenName);
+	    console.log("profile info: " + profile.name.givenName + profile.name.familyName + profile.id);
 	    var newUser = new User();
-		User.findOne({'local.username': profile.name.givenName + profile.name.familyName}, function(err, user){
+	    var profileName = profile.name.givenName + profile.name.familyName + profile.id;
+		User.findOne({'local.username': profileName}, function(err, user){
 			if(err)
 				return done(err);
-			newUser.local.username = profile.name.givenName + profile.name.familyName;
 			if(user){ //don't want to reregister the user
-				newUser.local.username = profile.name.givenName + profile.name.familyName + profile.id;
+				console.log("Returning user");
+				newUser = user;
 			}
-			if (profile.email_verified) {
-				newUser.local.username = profile.email;
+			else {
+				console.log("New user");
+				newUser.local.username = profileName;
+				console.log(newUser.local.username);
+				newUser.local.password = createHash(profile.name.givenName + profile.name.familyName + "Password");
+				newUser.local.firstName = profile.name.familyName;
+				newUser.local.lastName = profile.name.givenName;
+				newUser.local.field = "";
+				newUser.local.email = "";
+				newUser.save(function(err){
+					console.log("Done insert");
+					if(err)
+						throw err;
+					return done(null, newUser);
+				});
+
 			}
-			newUser.local.password = createHash(profile.name.givenName + profile.name.familyName + "Password");
-			newUser.local.firstName = profile.name.familyName;
-			newUser.local.lastName = profile.name.givenName;
-			newUser.local.field = "";
-			newUser.local.email = profile.email;
-			newUser.save(function(err){
-				if(err)
-					throw err;
-				return done(null, newUser);
-			});
 		});
 
 	    return done(null, newUser);
