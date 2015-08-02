@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var port = process.env.PORT || 9510;
+var port = process.env.PORT || 9500;
 var path = require('path');
 
 var cookieParser = require('cookie-parser');
@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var flash = require('connect-flash');
+var util = require('util');
 
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
@@ -27,21 +28,6 @@ app.use(passport.session());
 app.use(flash());
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-require('./app/routes.js')(app, passport);
-
-function signInCallback(authResult) {
-  if (authResult.code) {
-    $.post('/auth/google/callback', { code: authResult.code})
-    .done(function(data) {
-      $('#signinButton').hide();
-    }); 
-  } else if (authResult.error) {
-    console.log('There was an error: ' + authResult.error);
-  }
-};
-
 app.set('view engine', 'ejs');
 
 require('./app/routes.js')(app, passport);

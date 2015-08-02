@@ -11,10 +11,12 @@ module.exports = function(app, passport){
 		failureFlash: true
 	}));
 
-	app.post('/auth/google/callback', passport.authenticate('local-googlePlus-login'), function(req, res) {
-	    // Return user back to client 
-	    res.send(req.user);
-	});
+	app.post('/auth/google/callback', passport.authenticate('local-googlePlus-login', {
+		successRedirect: '/newsfeed',
+		failureRedirect: '/',
+		failureFlash: true
+	    //res.send(req.user);
+	}));
 
 	app.get('/signup', function(req, res){
 		res.render('signup.ejs', {message: req.flash('signupMessage')});
@@ -49,6 +51,7 @@ module.exports = function(app, passport){
 		req.logout();
 		res.redirect('/');
 	});
+
 };
 
 function isLoggedIn(req, res, next) {
@@ -59,3 +62,4 @@ function isLoggedIn(req, res, next) {
 
 	res.redirect('/');
 }
+

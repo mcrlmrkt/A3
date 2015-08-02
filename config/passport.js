@@ -1,6 +1,7 @@
 var LocalStrategy = require('passport-local').Strategy;
 var GooglePlusStrategy = require('passport-google-plus');
 var bCrypt = require('bcrypt-nodejs');
+var util = require('util');
 
 var User = require('../app/models/user');
 
@@ -74,8 +75,36 @@ module.exports = function(passport) {
 	    clientSecret: 'LC4vHOn-o6QHKg93ddcCYb4A'
 	  },
 	  function(tokens, profile, done) {
-	    // Create or update user, call done() when complete... 
-	    done(null, profile, tokens);
+	    // Create or update user, call done() when complete...
+		//console.log(util.inspect(profile, {showHidden: false, depth: null}));
+	    console.log("profile info: " + profile.id);
+	    console.log("profile info: " + profile.name.familyName);
+	    console.log("profile info: " + profile.email);
+	    console.log("profile info: " + profile.name.givenName);
+	    var newUser = new User();
+		User.findOne({'local.username': profile.name.givenName + profile.name.familyName}, function(err, user){
+			if(err)
+				return done(err);
+			newUser.local.username = profile.name.givenName + profile.name.familyName;
+			if(user){ //don't want to reregister the user
+				newUser.local.username = profile.name.givenName + profile.name.familyName + profile.id;
+			}
+			if (profile.email_verified) {
+				newUser.local.username = profile.email;
+			}
+			newUser.local.password = createHash(profile.name.givenName + profile.name.familyName + "Password");
+			newUser.local.firstName = profile.name.familyName;
+			newUser.local.lastName = profile.name.givenName;
+			newUser.local.field = "";
+			newUser.local.email = profile.email;
+			newUser.save(function(err){
+				if(err)
+					throw err;
+				return done(null, newUser);
+			});
+		});
+
+	    return done(null, newUser);
 	  }
 	));
 
