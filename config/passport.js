@@ -40,24 +40,6 @@ module.exports = function(passport) {
 					newUser.local.lastName = req.body.lastName;
 					newUser.local.field = req.body.field;
 					newUser.local.email = req.body.email;
-
-					var newPassword = req.body.settings_password;
-					var newFirstName = req.body.settings_firstName;
-					var newLastName = req.body.settings_lastName;
-					var newField = req.body.settings_field;
-					var newEmail = req.body.settings_email;
-
-					// if (newPassword != "")	
-					// 	req.user.local.password = newPassword;
-					// if (newFirstName != "")
-					// 	req.user.local.firstName = newFirstName;
-					// if (newLastName != "")
-					// 	req.user.local.lastName = newLastName;
-					// if (newField != "")
-					// 	req.user.local.field = newField;
-					// if (newEmail != "")	
-					// 	req.user.local.email = newEmail;
-
 					newUser.save(function(err){
 						if(err)
 							throw err;
@@ -90,6 +72,46 @@ module.exports = function(passport) {
 		}
 	));
 
+	// passport.use('local-update', new LocalStrategy(
+	// 	function(req, done){
+	// 		console.log('we are in local-update');
+	// 		process.nextTick(function(){
+	// 			User.findOne({ 'local.username': req.username}, function(err, user){
+	// 				if(err)
+	// 					return done(err);
+	// 				if(user){
+	// 					var newPassword = req.body.settings_password;
+	// 					var newFirstName = req.body.settings_firstName;
+	// 					var newLastName = req.body.settings_lastName;
+	// 					var newField = req.body.settings_field;
+	// 					var newEmail = req.body.settings_email;
+
+	// 					console.log('THIS IS THE INFO: ' + newPassword + " "
+	// 						+ newFirstName + " "
+	// 						+ newLastName + " "
+	// 						+ newField + " "
+	// 						+ newEmail);
+
+
+
+	// 					// console.log('this is the user: ' + req.user);
+	// 					// if (newPassword != "")	
+	// 					// 	collection.update({_id: req.user.id}, {$set: {password:  newPassword}});
+	// 					// if (newFirstName != "") 
+	// 					// 	collection.update({_id: req.user.id}, {$set: {firstName:  newFirstName}});
+	// 					// if (newLastName != "")
+	// 					// 	collection.update({_id: req.user.id}, {$set: {lastName:  newLastName}});
+	// 					// if (newField != "")
+	// 					// 	collection.update({_id: req.user.id}, {$set: {field:  newField}});
+	// 					// if (newEmail != "")	
+	// 					// 	collection.update({_id: req.user.id}, {$set: {email: newEmail}});
+	// 				}
+	// 				return done(null, user);
+	// 			});
+	// 		});
+	// 	}
+	// ));
+
 	passport.use('local-googlePlus-login', new GooglePlusStrategy({
 	    clientId: '72300732710-h8nos27som0091shjl9j5kmn3dsrvb1g.apps.googleusercontent.com',
 	    clientSecret: 'LC4vHOn-o6QHKg93ddcCYb4A',
@@ -97,7 +119,7 @@ module.exports = function(passport) {
 	  },
 	  function(req, token, profile, done) {
 	    // Create or update user, call done() when complete...
-		console.log(util.inspect(profile, {showHidden: false, depth: null}));
+		//console.log(util.inspect(profile, {showHidden: false, depth: null}));
 	    console.log("profile info: " + profile.name.givenName + profile.name.familyName + profile.id);
 	    var profileName = profile.name.givenName + profile.name.familyName + profile.id;
 		User.findOne({'local.username': profileName}, function(err, user){
@@ -111,12 +133,12 @@ module.exports = function(passport) {
 			else {
 				console.log("New user");
 				var newUser = new User();
-				newUser.local.username = profileName || "TEMP";
+				newUser.local.username = profileName;
 				newUser.local.password = createHash(profileName);
-				newUser.local.firstName = profile.name.familyName || "TEMP";
-				newUser.local.lastName = profile.name.givenName || "TEMP";
+				newUser.local.firstName = profile.name.familyName;
+				newUser.local.lastName = profile.name.givenName;
 				newUser.local.field = "TEMP";
-				newUser.local.email = profile.email || "TEMP";
+				newUser.local.email = "TEMP";
 				newUser.save(function(err){
 					console.log("Done insert");
 					if(err) {

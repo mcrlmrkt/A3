@@ -28,28 +28,28 @@
 	<div id="update_info">
 		<span id='close_settings'><button onclick="close_settings()">x</button></span>
 		<br>Please enter new information.
-		<br>Leave blank if you don't wish to change it.<br><br>
-	<form id="change_settings">
+		<br>Leave blank if you dont wish to change it.<br><br>
+	<form id="change_settings" action="/newsfeed" method="post">
 		</span>
     password:
 		<span id="settings_password">
-			<input type="password" name="password" onclick="this.focus();this.select()"/>
+			<input type="password" name="settings_password" onclick="this.focus();this.select()"/>
 		</span>
     first name:
 		<span id="settings_firstName">
-			<input type="text" name="firstName" onclick="this.focus();this.select()"/>
+			<input type="text" name="settings_firstName" onclick="this.focus();this.select()"/>
 		</span>
     last name:
-		<span id="settings_password">
-			<input type="text" name="lastName" onclick="this.focus();this.select()"/>
+		<span id="settings_lastName">
+			<input type="text" name="settings_lastName" onclick="this.focus();this.select()"/>
 		</span>
 	field of study:
 		<span id="settings_field">
-			<input type="text" name="field" onclick="this.focus();this.select()"/>
+			<input type="text" name="settings_field" onclick="this.focus();this.select()"/>
 		</span>
     e-mail:
 		<span id="settings_email">
-			<input type="text" name="email" onclick="this.focus();this.select()"/>
+			<input type="text" name="settings_email" onclick="this.focus();this.select()"/>
 		</span>
 		<br><br>
 		<span id="confirm">

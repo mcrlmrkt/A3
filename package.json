@@ -18,6 +18,8 @@
     "express-session": "1.4.0",
     "formidable": "^1.0.17",
     "fs-extra": "^0.22.1",
+    "mongodb": "^2.0.39",
+    "mongojs": "^1.2.1",
     "mongoose": "latest",
     "morgan": "^1.6.1",
     "passport": "^0.2.2",

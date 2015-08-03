@@ -32,6 +32,7 @@ app.use(flash());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//require('./config/settings')(passport);
 require('./app/routes.js')(app, passport);
 
 app.listen(port);

@@ -167,7 +167,7 @@ a:hover{
 	border-radius: 10px;
 	left: 35%;
 	z-index: 2;
-	//display: none;
+	display: none;
 }
 #courses_taken input{
 	background: white;
