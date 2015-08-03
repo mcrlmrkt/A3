@@ -110,56 +110,6 @@ module.exports = function(app, passport, test){
 		console.log(req.user.local);
 		var username = req.user.local.username;
 
-		
-
-		/*process.nextTick(function(){
-			mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db){
-				console.log("===================")
-				console.log(db);
-				var collection = db.collection('courses');
-				console.log("Collection is ================");
-				console.log(collection);
-				collection.find({ 'local.courseCode': courseCode}, function(err, course){
-					if(err)
-					return done(err);
-				//if(!course)
-				//	return done(null, false, req.flash('courseCodeMessage', 'No Course Found'));
-					console.log('THIS IS THE course: '+collection.local );
-
-					var subject = collection.local.field;
-					var courseName = collection.local.courseName;
-					var rating = collection.local.rating;
-
-					return done(null, Course);
-				});
-				db.close();
-			});
-		});*/
-
-		/*process.nextTick(function(){
-			var query = Course.find( {'local.courseCode': courseCode} );
-			//Course.findOne( { 'local.courseCode': courseCode}, function(err, course){
-			query.exec(function(err, reuslts){
-				if(err)
-					return done(err);
-				results.forEach(function(course){
-					var subject = course.local.field;
-					var courseName = course.local.courseName;
-					var rating = course.local.rating;
-					var desc = course.local.desc;
-					var date = course.local.date;
-
-					console.log(subject+" "+courseName+" "+
-						courseCode+" "+rating+" "+desc+" "+date);
-
-					//return done(null, Course);
-					res.render('./course_code.ejs', { 
-				title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-		 		user:req.user, subject: subject, courseName: courseName, rating: rating, courseCde: courseCode, username: username});
-				})
-			});
-		});*/
-
 		process.nextTick(function(){
 			//var query = Course.find( {'local.courseCode': courseCode} );
 			Course.findOne( { 'local.courseCode': courseCode}, function(err, course){
