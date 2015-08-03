@@ -23,23 +23,31 @@
 	<div id="courses_taken">
 		<span id='close_courses'><button onclick="close_courses()">x</button></span>
 		<br>Please enter information about your course<br><br>
-	<form id="change_settings" action="course" method="post">
+
+	<form id="change_settings" action="/course" method="post">
+
 		</span>
-    subject:
-		<span id="">
-			<input type="password" name="password" onclick="this.focus();this.select()"/>
+    Subject:
+		<span>
+			<input class="course_in" type="text" name="subject" onclick="this.focus();this.select()"/>
 		</span>
-    course name:
-		<span id="">
-			<input type="text" name="firstName" onclick="this.focus();this.select()"/>
+    Course Name:
+		<span>
+			<input class="course_in" type="text" name="courseName" onclick="this.focus();this.select()"/>
 		</span>
-    course code:
-		<span id="">
-			<input type="text" name="lastName" onclick="this.focus();this.select()"/>
+    Course Code:
+		<span>
+			<input class="course_in" type="text" name="courseCode" onclick="this.focus();this.select()"/>
 		</span>
-	description:
-		<span id="">
-			<input type="text" name="lastName" onclick="this.focus();this.select()"/>
+	Rating:
+		<span>
+			<input id="rating" type="number" name="rating" min="1" max="5" value="1">
+			<!--<input type="text" name="rating" onclick="this.focus();this.select()"/> -->
+		</span>
+	Description:
+	<br>
+		<span>
+			<textarea id="desc" name="desc" onclick="this.focus();this.select()"></textarea>
 		</span>
 		<br><br>
 		<span id="confirm">
@@ -54,4 +62,3 @@
     <% include partials/footer.ejs %>
 </footer>
 </html>
-

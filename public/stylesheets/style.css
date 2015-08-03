@@ -208,3 +208,16 @@ a:hover{
 #result{
 	width: 65%;
 }
+#desc, .course_in{
+	width: 100%;
+}
+#rating{
+	text-align: center;
+	width: 10%;
+}
+#date_right{
+	float: right;
+}
+#name_date{
+	color: #FFA300;
+}
