@@ -182,13 +182,13 @@ a:hover{
     width: 80%;
     display: block;
 }
-#close_courses{
-	position: absolute;
-	right:5%;
-}
 #close_settings:hover{
 	color: #FFA300;
 	cursor: pointer;
+}
+#close_courses{
+	position: absolute;
+	right:5%;
 }
 #close_courses button{
 	background: none;
@@ -196,6 +196,48 @@ a:hover{
 	border: none;
 }
 #close_courses button:hover{
+	background: none;
+	font-size: 1.2vw;
+	border: none;
+	color: #FFA300;
+	cursor: pointer;
+}
+
+#friendConfirm{
+	text-align: center;
+	float: auto;
+	position: absolute;
+	background: white;
+	top: 6vw;
+	padding: 2%;
+	border-radius: 10px;
+	left: 35%;
+	z-index: 2;
+	display: none;
+}
+#friendConfirm input{
+	background: white;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 2vw;
+    color: #BEB5B3;
+    height: 2.5vw;
+    overflow: hidden;
+    border: 1px solid black;
+    width: 80%;
+    display: block;
+}
+#friendCancel{
+	position: absolute;
+	right:5%;
+}
+#friendCancel button{
+	background: none;
+	font-size: 1.2vw;
+	border: none;
+}
+#friendCancel button:hover{
 	background: none;
 	font-size: 1.2vw;
 	border: none;

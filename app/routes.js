@@ -1,4 +1,5 @@
 var User = require('./models/user');
+var FriendList = require('./models/friend');
 var mongodb = require('mongodb').MongoClient;
 
 // Connect to the db
@@ -53,11 +54,28 @@ module.exports = function(app, passport){
 		 		user:req.user});
 	});
 
+	app.get('/friendRequest', isLoggedIn, function(req, res){
+		res.render('./friendRequest.ejs', { 
+				title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+		 		user:req.user});
+	});
+
 	app.get('/logout', function(req, res){
 		req.logout();
 		res.redirect('/');
 	});
-	
+
+	app.post('/friendReq', function(req, res){
+		mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
+			if(!err) {
+			   console.log("We are connected");
+			}
+			if (req.body) {
+
+			}
+		});
+	});
+
 	app.post('/newsfeed', function(req, res, done){
 			mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
 					if(!err) {
