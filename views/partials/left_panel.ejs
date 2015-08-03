@@ -10,8 +10,7 @@
 
 	<div id="left_panel" class="main">
 		<span id="display_pic">
-			<button class="setting" id="upload_circle" onclick="upload_dp()">+</button>
-				<input id="upload_dp" type='file' />
+			
 			<img src="/images/default.jpg" id="dp">
 		</span>
 		<span id="username_display">
@@ -29,8 +28,11 @@
 		<span id='close_settings'><button onclick="close_settings()">x</button></span>
 		<br>Please enter new information.
 		<br>Leave blank if you dont wish to change it.<br><br>
+	<form id = "uploadPhoto"  action="/left_panel", method="post", enctype="multipart/form-data">
+		<button class="setting" id="upload_circle" onclick="upload_dp()">Add Photo</button>
+		<input id="upload_dp" type='file' />
+		<input id="submit_dp" type='submit' /></form><br><br>
 	<form id="change_settings" action="/newsfeed" method="post">
-		</span>
     password:
 		<span id="settings_password">
 			<input type="password" name="settings_password" onclick="this.focus();this.select()"/>

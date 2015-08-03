@@ -8,7 +8,7 @@ mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/cour
   }
 });
 
-module.exports = function(app, passport){
+module.exports = function(app, passport, test){
 	app.get('/', function(req, res){
 		res.render('index.ejs', { message: req.flash('loginMessage')});
 	});
@@ -25,8 +25,9 @@ module.exports = function(app, passport){
 	});
 	app.get('/newsfeed', isLoggedIn, function(req, res, next) {
 		console.log("Get NewsFeed");
+		console.log(req.files);
 		res.render('./newsfeed.ejs', 
-			{	title: 'Course Tackle - News Feed',
+			{	title: 'Course Tackle -` News Feed',
 		 		user: req.user });
 	});
 
@@ -53,6 +54,12 @@ module.exports = function(app, passport){
 		 		user:req.user});
 	});
 
+	app.get('/results', isLoggedIn, function(req, res){
+		res.render('./results.ejs', { 
+				title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+		 		user:req.user});
+	});
+
 	app.get('/logout', function(req, res){
 		req.logout();
 		res.redirect('/');
@@ -72,12 +79,7 @@ module.exports = function(app, passport){
 
 						var collection = db.collection('users');
 
-						console.log('password: ' + newPassword + " "
-							+ 'firstName: '+ newFirstName + " "
-						 	+ 'lastName: '+ newLastName + " "
-						 	+ 'field: ' + newField + " "
-						 	+ 'email: ' + newEmail);
-						console.log(req.user);
+						console.log('BEFORE THE CHANGE' + req.user);
 						console.log(req.user.id);
 
 						User.findOne({_id: req.user.id}, function(err, user){
@@ -102,7 +104,7 @@ module.exports = function(app, passport){
 									console.log('user not found/cant save');
 								} else {
 									console.log('user saved');
-									console.log(user);
+									console.log('AFTER THE CHANGE: ' + user);
 								}
 							})
 						})
@@ -110,6 +112,14 @@ module.exports = function(app, passport){
 				db.close();
 			})
 		res.redirect(req.get('referer'));
+	});
+
+	app.get('/left_panel', function(req, res) {
+		console.log(req.files);
+	  	res.render('./partials/left_panel.ejs', { title: 'ONIX Validator' });
+	});
+	app.post('/left_panel', function(req, res) {
+	  console.log(req.files);
 	});
 }
 

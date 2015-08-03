@@ -117,6 +117,9 @@ a:hover{
 #wall{
 	width: 65%;
 }
+#results_page{
+	width: 65%;
+}
 #courses{
 	width: 65%;
 }
@@ -201,4 +204,7 @@ a:hover{
 	border: none;
 	color: #FFA300;
 	cursor: pointer;
+}
+#result{
+	width: 65%;
 }
