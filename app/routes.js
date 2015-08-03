@@ -3,6 +3,7 @@ var FriendList = require('./models/friend');
 var FriendReq = require('./models/friendReq');
 var Course = require('./models/course');
 var mongodb = require('mongodb').MongoClient;
+var url = require('url');
 
 // Connect to the db
 mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
@@ -150,7 +151,7 @@ module.exports = function(app, passport, test){
 	// FriendReq page
 
 	app.get('/friendRequest', isLoggedIn, function(req, res){
-		FriendReq.findOne({'username': req.user.local.username }, function(err, freq){
+		FriendReq.findOne({'pendingFriend': req.user.local.username }, function(err, freq){
 			if(err)
 				return done(err);
 			if(freq){ // exists unanswered requests
@@ -185,6 +186,22 @@ module.exports = function(app, passport, test){
 						throw err;
 					}
 				});
+			}
+		});
+	});
+
+	app.get('/replyFriend', isLoggedIn, function(req, res) {
+		mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
+			if(!err) {
+			   console.log("We are connected");
+			}
+			if (req.body) {
+				console.log("req body: " + req.body);
+				var url_parts = url.parse(req.url, true);
+				var query = url_parts.query;
+				console.log("query reply: " + query.reply);
+				console.log("query username: " + query.username);
+				console.log("Replying to friends");
 			}
 		});
 	});
