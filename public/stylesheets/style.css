@@ -114,13 +114,16 @@ a:hover{
 	font-weight:100;
 	color: #FFA300;
 }
-#wall{
+#wall, #user_wall{
+	width: 65%;
+}
+#results_page{
 	width: 65%;
 }
 #courses{
 	width: 65%;
 }
-#wall_entry{
+#wall_entry, #user_wall_entry{
 	background: none;
 	border: none;
 	border-bottom: 1px solid black;
@@ -243,4 +246,20 @@ a:hover{
 	border: none;
 	color: #FFA300;
 	cursor: pointer;
+}
+#result{
+	width: 65%;
+}
+#desc, .course_in{
+	width: 100%;
+}
+#rating{
+	text-align: center;
+	width: 10%;
+}
+#date_right{
+	float: right;
+}
+#name_date{
+	color: #FFA300;
 }

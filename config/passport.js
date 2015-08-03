@@ -72,46 +72,6 @@ module.exports = function(passport) {
 		}
 	));
 
-	// passport.use('local-update', new LocalStrategy(
-	// 	function(req, done){
-	// 		console.log('we are in local-update');
-	// 		process.nextTick(function(){
-	// 			User.findOne({ 'local.username': req.username}, function(err, user){
-	// 				if(err)
-	// 					return done(err);
-	// 				if(user){
-	// 					var newPassword = req.body.settings_password;
-	// 					var newFirstName = req.body.settings_firstName;
-	// 					var newLastName = req.body.settings_lastName;
-	// 					var newField = req.body.settings_field;
-	// 					var newEmail = req.body.settings_email;
-
-	// 					console.log('THIS IS THE INFO: ' + newPassword + " "
-	// 						+ newFirstName + " "
-	// 						+ newLastName + " "
-	// 						+ newField + " "
-	// 						+ newEmail);
-
-
-
-	// 					// console.log('this is the user: ' + req.user);
-	// 					// if (newPassword != "")	
-	// 					// 	collection.update({_id: req.user.id}, {$set: {password:  newPassword}});
-	// 					// if (newFirstName != "") 
-	// 					// 	collection.update({_id: req.user.id}, {$set: {firstName:  newFirstName}});
-	// 					// if (newLastName != "")
-	// 					// 	collection.update({_id: req.user.id}, {$set: {lastName:  newLastName}});
-	// 					// if (newField != "")
-	// 					// 	collection.update({_id: req.user.id}, {$set: {field:  newField}});
-	// 					// if (newEmail != "")	
-	// 					// 	collection.update({_id: req.user.id}, {$set: {email: newEmail}});
-	// 				}
-	// 				return done(null, user);
-	// 			});
-	// 		});
-	// 	}
-	// ));
-
 	passport.use('local-googlePlus-login', new GooglePlusStrategy({
 	    clientId: '72300732710-h8nos27som0091shjl9j5kmn3dsrvb1g.apps.googleusercontent.com',
 	    clientSecret: 'LC4vHOn-o6QHKg93ddcCYb4A',

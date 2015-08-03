@@ -71,5 +71,33 @@ a:hover{
     overflow: hidden;
     border: none;
 }
+/*
+.main{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding-top:5%;
+    text-align: left;
+}
+#left_panel{
+    width: 30%;
+    margin-left:1%;
+    text-align: center;
+    font-weight: 300;
+    color: #FFA300;
+}
+#username{
+    font-size: 2.5vw;
+    color: white;
+}
+#left_panel span{
+    display: block;
+}
+ul, li, a{
+    list-style: none;
+}
+
+
+*/
 
 

@@ -1,0 +1,43 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,400,300' rel='stylesheet' type='text/css'>
+	<script src="/javascripts/ct.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <title>CourseTackle</title>
+
+ <header>
+    <% include partials/header.ejs %>
+</header>
+
+<body>
+
+	<div class="container">
+    <% include partials/left_panel.ejs %>
+    	<div id="courses" class="main">
+			<h4><%= subject %></h4>
+			<div id="code_name">
+				<span> <%= courseCode %>:</span>
+				<span> <%= courseName %></span>
+			</div>
+			<div id="name_date">
+				<span> <%= username %></span>
+				<span id="date_right"> <%= date %></span>
+			</div>
+			<div>
+				Rating:
+				<span> <%= rating %></span>
+			</div>
+			<div>
+				<span> <%= desc %></span>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<footer>
+    <% include partials/footer.ejs %>
+</footer>
+</html>
