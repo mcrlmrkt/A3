@@ -263,3 +263,9 @@ a:hover{
 #name_date{
 	color: #FFA300;
 }
+#subject{
+	background: white;
+}
+input{
+	width: 100%;
+}
