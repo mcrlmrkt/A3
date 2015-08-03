@@ -60,6 +60,12 @@ module.exports = function(app, passport, test){
 		 		user:req.user});
 	});
 
+	app.get('/user', isLoggedIn, function(req, res){
+		res.render('./user.ejs', { 
+				title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+		 		user:req.user});
+	});
+
 	app.get('/logout', function(req, res){
 		req.logout();
 		res.redirect('/');

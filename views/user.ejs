@@ -1,0 +1,34 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,400,300' rel='stylesheet' type='text/css'>
+	<script src="/javascripts/ct.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <title>CourseTackle</title>
+</head>
+<header>
+    <% include partials/header.ejs %>
+</header>
+<body>
+	<div class="container">
+    	<% include partials/left_panel.ejs %>
+		<div id="user_wall" class="main">
+			<h4>wall</h4>
+			<input type="text" value="say something here..." id="user_wall_entry" onclick="this.focus();this.select()"/>
+			<button id="wall_submit">Submit</button>
+			<span class="user_wall_post post">
+				user comments
+			</span><span class="wall_post post">
+				user comments
+			</span>
+		</div>
+	</div>
+</body>
+
+
+<footer>
+    <% include partials/footer.ejs %>
+</footer>
+</html>
+
