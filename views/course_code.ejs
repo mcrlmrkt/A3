@@ -20,22 +20,27 @@
     			<span id="rate_com"> Rate and Comment <%= courseCode %> </span>
 				<text id="add_course_taken" class="add" onclick="courses()">+</text>
 			</span>
-			<h4><%= subject %></h4>
+		<span class="user_wall_post post">
+		<% for (var i=0; i<courselist.length; i++) { %>
+			<h4><%= courselist[i].local.field %></h4>
 			<div id="code_name">
-				<span> <%= courseCode %>:</span>
-				<span> <%= courseName %></span>
+				<span> <%= courselist[i].local.courseCode %>:</span>
+				<span> <%= courselist[i].local.courseName %></span>
 			</div>
 			<div id="name_date">
-				<span> <%= username %></span>
-				<span id="date_right"> <%= date %></span>
+				<span> <%= courselist[i].local.username %></span>
+				<span id="date_right"> <%= courselist[i].local.date %></span>
 			</div>
 			<div>
 				Rating:
-				<span> <%= rating %></span>
+				<span> <%= courselist[i].local.rating %></span>
 			</div>
 			<div>
-				<span> <%= desc %></span>
+				<span> <%= courselist[i].local.desc %></span>
 			</div>
+			
+		<% } %>
+		</span>
 		</div>
 	</div>
 
@@ -51,19 +56,19 @@
     	<div class="subject">
 			<select name="subject">
 			<!--<input class="course_in" type="text" name="subject" onclick="this.focus();this.select()"/>-->
-				<option selected value="<%= subject %>" name="<%= subject %>"><%= subject %></option>
+				<option selected value="<%= courselist[0].local.field %>" name="<%= courselist[0].local.fieldt %>"><%= courselist[0].local.field %></option>
 			</select>
 		</div>
 	
     Course Name:
 		<span>
-			<%= courseName %>
-			<input class="course_in" type="text" name="courseName" value="<%= courseName %>" onclick="this.focus();this.select()"/>
+			<%= courselist[0].local.courseName %>
+			<input class="course_in" type="text" name="courseName" value="<%= courselist[0].local.courseName %>" onclick="this.focus();this.select()"/>
 		</span>
 	
     Course Code:
 		<span>
-			<input class="course_in" type="text" name="courseCode" value="<%= courseCode %>" onclick="this.focus();this.select()"/>
+			<input class="course_in" type="text" name="courseCode" value="<%= courselist[0].local.courseCode %>" onclick="this.focus();this.select()"/>
 		</span>
 	
 	Rating:
