@@ -100,8 +100,6 @@ module.exports = function(app, passport, test){
 				}
 			});
 		});
-
-
 	});
 
 	app.post('/course', function(req, res){
@@ -161,22 +159,33 @@ module.exports = function(app, passport, test){
 					return done(err);
 				console.log("+++++++++++++++");
 				console.log(course);
-				var subject = course.local.field;
-				var courseName = course.local.courseName;
-				var rating = course.local.rating;
-				var desc = course.local.desc;
-				var date = course.local.created_at;
 
-				console.log(subject+" "+courseName+" "+
+				if (course == null) { //if couldn't find coursecose in db
+					var collection = Course.find({'local.username': req.user.local.username});
+					console.log(collection);
+					res.render('./course.ejs', { 
+						title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+		 				user:req.user, collection: collection});
+				}
+				else {
+					var subject = course.local.field;
+					var courseName = course.local.courseName;
+					var rating = course.local.rating;
+					var desc = course.local.desc;
+					var date = course.local.created_at;
+
+					console.log(subject+" "+courseName+" "+
 						courseCode+" "+rating+" "+desc+" "+date);
 
 					//return done(null, Course);
-					res.render('./course_code.ejs', { 
-				title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-		 		user:req.user, subject: subject, courseName: courseName, rating: rating, courseCode: courseCode, 
-		 		username: username, desc: desc, date: date});
-				
+
+						res.render('./course_code.ejs', { 
+							title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+		 					user:req.user, subject: subject, courseName: courseName, rating: rating, courseCode: courseCode, 
+		 					username: username, desc: desc, date: date});
+				};
 			});
+			
 		});
 	
 	});

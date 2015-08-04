@@ -18,6 +18,10 @@
 			<h4>courses</h4>
 			<span id="taken" class="post">
 				<text id="add_course_taken" class="add" onclick="courses()">+</text>
+			</span>
+
+			
+
 		</div>
 	</div>
 	<div id="courses_taken">
@@ -28,9 +32,57 @@
 
 		</span>
     Subject:
-		<span>
-			<input class="course_in" type="text" name="subject" onclick="this.focus();this.select()"/>
-		</span>
+    	<div id="subject">
+			<select name="subject">
+			<!--<input class="course_in" type="text" name="subject" onclick="this.focus();this.select()"/>-->
+				<option selected value="Anthropology" name="Anthropology">Anthropology</option>
+				<option value="Astronomy" name="Astronomy">Astronomy</option>
+				<option value="Biology" name="Biology">Biology</option>
+				<option value="Biomedical Communications" name="Biomedical Communications">Biomedical Communications</option>
+				<option value="Chemistry" name="Chemistry">Chemistry</option>
+				<option value="Cinema Studies" name="Cinema Studies">Cinema Studies</option>
+				<option value="Classics" name="Classics">Classics</option>
+				<option value="Communication, Culture, Information and Technology" name="Communication, Culture, Information and Technology">Communication, Culture, Information and Technology</option>
+				<option value="Computer Science" name="Computer Science">Computer Science</option>
+				<option value="Concurrent Teacher Education" name="Concurrent Teacher Education">Concurrent Teacher Education</option>
+				<option value="Diaspora and Transnational Studies" name="Diaspora and Transnational Studies">Diaspora and Transnational Studies</option>
+				<option value="Earth Science" name="Earth Science">Earth Science</option>
+				<option value="Economics" name="Economics">Economics</option>
+				<option value="Education Studies" name="Education Studies">Education Studies</option>
+				<option value="English" name="English">English</option>
+				<option value="Environment" name="Environment">Environment</option>
+				<option value="Environmental Geoscience" name="Environmental Geoscience">Environmental Geoscience</option>
+				<option value="Erindal Courses" name="Erindal Courses">Erindal Course</option>
+				<option value="European Studies" name="European Studies">European Studies</option>
+				<option value="Fine Art History" name="Fine Art History">Fine Art History</option>
+				<option value="Fine Art Studio" name="Fine Art Studio">Fine Art Studio</option>
+				<option value="First Year Experience" name="First Year Experience">First Year Experience</option>
+				<option value="Forensic Science" name="Forensic Science">Forensic Science</option>
+				<option value="French" name="French">French</option>
+				<option value="Geography" name="Geography">Geography</option>
+				<option value="History" name="History">History</option>
+				<option value="History of Religions" name="History of Religions">History of Religions</option>
+				<option value="Italian" name="Italian">Italian</option>
+				<option value="Language Studies" name="Language Studies">Language Studies</option>
+				<option value="Language Teaching and Learning: French and Italian" name="Language Teaching and Learning: French and Italian">Language Teaching and Learning: French and Italian</option>
+				<option value="Linguistics" name="Linguistics">Linguistics</option>
+				<option value="Management" name="Management">Management</option>
+				<option value="Mathematics" name="Mathematics">Mathematics</option>
+				<option value="Philosophy" name="Philosophy">Philosophy</option>
+				<option value="Physics" name="Physics">Physics</option>
+				<option value="Political Science" name="Political Science">Political Science</option>
+				<option value="Professional Writing and Communication" name="Professional Writing and Communication">Professional Writing and Communication</option>
+				<option value="Psychology" name="Psychology">Psychology</option>
+				<option value="Science" name="Science">Science</option>
+				<option value="Slavic Language (Croatian)" name="Slavic Language (Croatian)">Slavic Language (Croatian)</option>
+				<option value="Sociology" name="Sociology">Sociology</option>
+				<option value="Statistics" name="Statistics">Statistics</option>
+				<option value="utmOne" name="utmOne">utmOne</option>
+				<option value="Visual Culture and Communication" name="Visual Culture and Communication">Visual Culture and Communication</option>
+				<option value="Women and Gender Studies" name="Women and Gender Studies">Women and Gender Studies</option>
+
+			</select>
+		</div>
     Course Name:
 		<span>
 			<input class="course_in" type="text" name="courseName" onclick="this.focus();this.select()"/>
