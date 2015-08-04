@@ -160,7 +160,7 @@ module.exports = function(app, passport, test){
 				console.log("+++++++++++++++");
 				console.log(course);
 
-				if (course == null) { //if couldn't find coursecose in db
+				if (course == null) { //if couldn't find coursecode in db
 					var collection = Course.find({'local.username': req.user.local.username});
 					console.log(collection);
 					res.render('./course.ejs', { 
@@ -189,6 +189,31 @@ module.exports = function(app, passport, test){
 		});
 	
 	});
+
+	app.post('/course/:courseCode', function(req, res){
+		console.log("in app post");
+		process.nextTick(function(){
+			var newCourse = new Course();
+
+			newCourse.local.username = req.user.local.username;
+			newCourse.local.field = req.body.subject;
+			newCourse.local.courseName = req.body.courseName;
+			newCourse.local.courseCode = req.body.courseCode;
+			newCourse.local.rating = req.body.rating;
+			newCourse.local.desc = req.body.desc;
+
+			console.log(newCourse.local.username +" "+newCourse.local.field+" "+newCourse.local.courseName+" "+newCourse.local.courseCode+" "+newCourse.local.rating+" "+newCourse.local.desc);
+
+			newCourse.save(function(err){
+				if(err)
+					throw err;
+				return done(null, newCourse);
+			});
+			res.redirect('/course/'+newCourse.local.courseCode);
+		});
+
+	});
+	
 
 	// Logout
 

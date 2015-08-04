@@ -16,6 +16,10 @@
 	<div class="container">
     <% include partials/left_panel.ejs %>
     	<div id="courses" class="main">
+    		<span id="taken" class="post">
+    			<span id="rate_com"> Rate and Comment <%= courseCode %> </span>
+				<text id="add_course_taken" class="add" onclick="courses()">+</text>
+			</span>
 			<h4><%= subject %></h4>
 			<div id="code_name">
 				<span> <%= courseCode %>:</span>
@@ -33,6 +37,51 @@
 				<span> <%= desc %></span>
 			</div>
 		</div>
+	</div>
+
+
+	<div id="courses_taken">
+		<span id='close_courses'><button onclick="close_courses()">x</button></span>
+		<br>Please enter information about your course<br><br>
+
+	<form id="change_settings" action="/course/<% courseCode %>" method="post">
+
+		</span>
+    Subject:
+    	<div class="subject">
+			<select name="subject">
+			<!--<input class="course_in" type="text" name="subject" onclick="this.focus();this.select()"/>-->
+				<option selected value="<%= subject %>" name="<%= subject %>"><%= subject %></option>
+			</select>
+		</div>
+	
+    Course Name:
+		<span>
+			<%= courseName %>
+			<input class="course_in" type="text" name="courseName" value="<%= courseName %>" onclick="this.focus();this.select()"/>
+		</span>
+	
+    Course Code:
+		<span>
+			<input class="course_in" type="text" name="courseCode" value="<%= courseCode %>" onclick="this.focus();this.select()"/>
+		</span>
+	
+	Rating:
+		<span>
+			<input id="rating" type="number" name="rating" min="1" max="5" value="1">
+			<!--<input type="text" name="rating" onclick="this.focus();this.select()"/> -->
+		</span>
+	Description:
+	<br>
+		<span>
+			<textarea id="desc" name="desc" onclick="this.focus();this.select()"></textarea>
+		</span>
+		<br><br>
+		<span id="confirm">
+			<button id="confirm_settings">Confirm</button>
+			<br><Br><br>
+		</span>
+		</form>
 	</div>
 
 </body>
