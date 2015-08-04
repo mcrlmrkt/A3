@@ -12,9 +12,7 @@ module.exports = function(passport) {
 	});
 
 	passport.deserializeUser(function(id, done){
-		console.log("Finding user by ID");
 		User.findById(id, function(err, user){
-			console.log("USER FOUND");
 			done(err, user);
 		});
 	});
@@ -65,7 +63,6 @@ module.exports = function(passport) {
 					if(!isValidPassword(user, password)){
 						return done(null, false, req.flash('loginMessage', 'Invalid password'));
 					}
-					console.log('THIS IS THE USER: ' );
 					return done(null, user);
 				});
 			});

@@ -21,7 +21,8 @@
 		<span id="name_display"><%= user.local.firstName %>   <%= user.local.lastName %></span>
 		<span id="email_display"><%= user.local.email %></span>
 		<span id="feild_display"><%= user.local.field %></span>
-		<span id="friends">friends:</span>
+		<span id="friends">friends: <% for (var i=0; i<friendlist.length; i++) { %>
+			<%= friendlist[i].friend %>, <% } %> </span>
 		<form action='addFriend' method='post'>
 			<input type='text' name='fUsername'>
 			<input type='hidden' name='reqUser' value=<%= user.local.username%>>

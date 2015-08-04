@@ -32,11 +32,25 @@ module.exports = function(app, passport, test){
   		res.send(req.user);
 	});
 	app.get('/newsfeed', isLoggedIn, function(req, res, next) {
-		console.log("Get NewsFeed");
 		console.log(req.files);
-		res.render('./newsfeed.ejs', 
-			{	title: 'Course Tackle -` News Feed',
-		 		user: req.user });
+		var flist = null;
+		mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
+			if(!err) {
+			   console.log("We are connected");
+			}
+			FriendList.find({'username' : req.user.local.username }, function(err, friendlist) {
+				console.log(req.user.local.username);
+				if(friendlist){
+					flist = friendlist;
+					console.log("My Flist outside is : " + flist);
+					res.render('./newsfeed.ejs', 
+						{	title: 'Course Tackle -` News Feed',
+					 		user: req.user,
+					 		friendlist: flist });
+				}
+			});
+		});
+
 	});
 
 	app.get('/signup', function(req, res){
@@ -51,17 +65,43 @@ module.exports = function(app, passport, test){
 	}));
 
 	app.get('/profile', isLoggedIn, function(req, res){
-		res.render('./profile.ejs', 
-			{ title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-		 		 user: req.user });
+		var flist = null;
+		mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
+			if(!err) {
+			   console.log("We are connected");
+			}
+			FriendList.find({'username' : req.user.local.username }, function(err, friendlist) {
+				if(friendlist){
+					res.render('./profile.ejs', 
+						{	title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+					 		user: req.user,
+					 		friendlist: friendlist });
+				}
+			});
+		});
+
+
 	});
 
 	// Course page
 
 	app.get('/course', isLoggedIn, function(req, res){
-		res.render('./course.ejs', { 
-				title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-		 		user:req.user});
+		var flist = null;
+		mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
+			if(!err) {
+			   console.log("We are connected");
+			}
+			FriendList.find({'username' : req.user.local.username }, function(err, friendlist) {
+				if(friendlist){
+					res.render('./course.ejs', 
+					{	title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+				 		user: req.user,
+		 				friendlist: friendlist });
+				}
+			});
+		});
+
+
 	});
 
 	app.post('/course', function(req, res){
@@ -151,22 +191,37 @@ module.exports = function(app, passport, test){
 	// FriendReq page
 
 	app.get('/friendRequest', isLoggedIn, function(req, res){
-		FriendReq.findOne({'pendingFriend': req.user.local.username }, function(err, freq){
-			if(err)
-				return done(err);
-			if(freq){ // exists unanswered requests
-				res.render('./friendRequest.ejs', { 
-						title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-				 		friendsreqs: freq,
-				 		user:req.user});
-			} else { // no requests exist
-				console.log("No friend Requests");
-				res.render('./friendRequest.ejs', { 
-						title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-				 		friendreqs: null,
-				 		user:req.user});
+		mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
+			if(!err) {
+			   console.log("We are connected");
 			}
+			FriendList.find({'username' : req.user.local.username }, function(err, friendlist) {
+				console.log(req.user.local.username);
+				if(friendlist){
+					FriendReq.find({'pendingFriend': req.user.local.username }, function(err, freq){
+						if(err)
+							return done(err);
+						if(freq){ // exists unanswered requests
+							console.log("List of friend requests");
+							res.render('./friendRequest.ejs', { 
+									title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+							 		friendsreqs: freq,
+							 		friendlist: friendlist,
+							 		user:req.user});
+						} else { // no requests exist
+							console.log("No friend Requests");
+							res.render('./friendRequest.ejs', { 
+									title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+							 		friendreqs: null,
+							 		friendlist: friendlist,
+							 		user:req.user});
+						}
+					});
+				}
+			});
 		});
+
+
 	});
 
 	// add friend
@@ -186,6 +241,14 @@ module.exports = function(app, passport, test){
 						throw err;
 					}
 				});
+				newReq.username = req.body.fUsername;
+				newReq.pendingFriend = req.body.reqUser;
+				newReq.save(function(err){
+					if(err) {
+						console.log("new req insert error");
+						throw err;
+					}
+				});
 			}
 		});
 	});
@@ -196,11 +259,21 @@ module.exports = function(app, passport, test){
 			   console.log("We are connected");
 			}
 			if (req.body) {
-				console.log("req body: " + req.body);
 				var url_parts = url.parse(req.url, true);
 				var query = url_parts.query;
-				console.log("query reply: " + query.reply);
-				console.log("query username: " + query.username);
+				if (query.reply === "Yes") {
+					var newFriend = new FriendList();
+					newFriend.username = query.username;
+					newFriend.friend = query.pending;
+					newFriend.save(function(err){
+						if(err) {
+							console.log("Friend Insert Failed");
+							throw err;
+						}
+					});
+				}
+				FriendReq.remove({ 'username':query.username, 'pendingFriend': query.pending});
+				FriendReq.remove({ 'username':query.pending, 'pendingFriend': query.username});
 				console.log("Replying to friends");
 			}
 		});

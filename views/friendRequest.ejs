@@ -23,20 +23,16 @@
 	<div id="friendConfirm">
 		<span id='friendCancel'><button onclick="close_friendReq()">x</button></span>
 		<br>List of pending friend requests<br><br>
-		<%= friendsreqs %>
-	<form id="change_settings" action="/friendReq" method="post">
 		</span>
     	Accept or decline Request:
-    	<% for (var attributename in friendsreqs) { %>
-   		<% if (attributename === "pendingFriend") { %>
-		<span id="FRequest"<%=attributename%>>
-			<%=friendsreqs.pendingFriend%>
-			<a href="/replyFriend?reply=Yes&username=<%=friendsreqs.pendingFriend%>"> Yes </a>
-			<a href="/replyFriend?reply=No&username=<%=friendsreqs.pendingFriend%>">"> No </a>
+    	<% for (var i=0; i<friendsreqs.length; i++) { %>
+		<span id="FRequest<%=i%>">
+			<%=friendsreqs[i].pendingFriend%>
+			<a href="/replyFriend?reply=Yes&username=<%=friendsreqs[i].username%>&pending=<%=friendsreqs[i].pendingFriend%>"> Yes </a>
+			<a href="/replyFriend?reply=No&username=<%=friendsreqs[i].username%>&pending=<%=friendsreqs[i].pendingFriend%>"> No </a>
 		</span>
-		<% }} %>
+		<% } %>
 		<br><br>
-		</form>
 	</div>
 </body>
 
