@@ -45,7 +45,8 @@ module.exports = function(app, passport){
 					res.render('./newsfeed.ejs', 
 						{	title: 'Course Tackle -` News Feed',
 					 		user: req.user,
-					 		friendlist: flist });
+					 		friendlist: flist,
+					 		photo: '/images/'+ req.user.local.username + '.jpg' });
 				}
 			});
 		});
@@ -65,21 +66,31 @@ module.exports = function(app, passport){
 
 	app.get('/profile', isLoggedIn, function(req, res){
 		var flist = null;
+		var gusername = "";
 		mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
 			if(!err) {
 			   console.log("We are connected");
 			}
+			gusername = req.user.local.username;
 			FriendList.find({'username' : req.user.local.username }, function(err, friendlist) {
 				if(friendlist){
-					res.render('./profile.ejs', 
-						{	title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+					wallPost.find({'post.to_user': req.user.local.username}, {'post.from_user': 1, 'post.wall_post': 1, _id: 0}, function(err, posts){
+					if (err){
+						console.log('there was an error finding posts to ' + req.user.local.username);
+						throw err;
+					} if (posts) {
+						console.log('testing posts ' + posts);
+						res.render('./profile.ejs', { 
+							title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
 					 		user: req.user,
-					 		friendlist: friendlist });
-				}
-			});
+					 		entries: posts,
+					 		friendlist: friendlist,
+					 		photo: '/images/'+ gusername + '.jpg' });
+						}
+					});
+			}});
+			
 		});
-
-
 	});
 
 	// Course page
@@ -95,7 +106,8 @@ module.exports = function(app, passport){
 					res.render('./course.ejs', 
 					{	title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
 				 		user: req.user,
-		 				friendlist: friendlist });
+		 				friendlist: friendlist,
+		 				photo: '/images/'+ req.user.local.username.toString() + '.jpg'  });
 				}
 			});
 		});
@@ -130,7 +142,8 @@ module.exports = function(app, passport){
 	app.get('/results', isLoggedIn, function(req, res){
 		res.render('./results.ejs', { 
 				title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-		 		user:req.user});
+		 		user:req.user,
+		 	photo: '/images/'+ req.user.local.username + '.jpg' });
 	});
 
 
@@ -244,14 +257,16 @@ module.exports = function(app, passport){
 									title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
 							 		friendsreqs: freq,
 							 		friendlist: friendlist,
-							 		user:req.user});
+							 		user:req.user,
+							 		photo: '/images/' + req.user.local.username + '.jpg'});
 						} else { // no requests exist
 							console.log("No friend Requests");
 							res.render('./friendRequest.ejs', { 
 									title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
 							 		friendreqs: null,
 							 		friendlist: friendlist,
-							 		user:req.user});
+							 		user:req.user,
+							 		photo: '/images/' + req.user.local.username + '.jpg'});
 						}
 					});
 				}
@@ -288,6 +303,7 @@ module.exports = function(app, passport){
 				});
 			}
 		});
+		res.redirect('back');
 	});
 
 	app.get('/replyFriend', isLoggedIn, function(req, res) {
@@ -417,13 +433,14 @@ module.exports = function(app, passport){
 					if (err){
 						console.log('there was an error finding posts to ' + req.params.username);
 						throw err;
-					} else {
+					} if (posts) {
 						console.log('testing posts ' + posts);
 						res.render('./user.ejs', { 
 							title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
 					 		user: user,
 					 		test: '/user/' + req.params.username,
-					 		entries: posts});
+					 		entries: posts,
+					 		photo: '/images/'+ req.params.username + '.jpg' });
 						}
 					});
 				}

@@ -11,7 +11,7 @@
 	<div id="left_panel" class="main">
 		<span id="display_pic">
 			
-			<img src="/images/default.jpg" id="dp">
+			<img src=<%= photo%> id="dp">
 		</span>
 		<span id="username_display">
 			<button class="setting" id="edit" onclick="settings()">
@@ -23,7 +23,8 @@
 		<span id="feild_display"><%= user.local.field %></span>
 		<span id="friends">friends: <% for (var i=0; i<friendlist.length; i++) { %>
 			<%= friendlist[i].friend %>, <% } %> </span>
-		<form action='/addFriend' method='post'>
+
+		<form method='post'>
 			<input type='text' name='fUsername'>
 			<input type='hidden' name='reqUser' value=<%= user.local.username%>>
 			<input type='submit' value='submit'>

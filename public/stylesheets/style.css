@@ -275,3 +275,23 @@ input{
 	padding:0;
 	margin: 0;	
 }
+.user_wall_post{	
+	padding: 2%;
+	background: #1A2E2F;
+	width: 90%;
+	display: block;
+	margin: 2%;
+	border-radius: 10px;
+}
+.wall_post{
+	padding: 2%;
+	background: #1A2E2F;
+	width: 90%;
+	display: block;
+	margin: 2%;
+	border-radius: 10px;	
+}
+hr{
+	color: black;
+
+}
