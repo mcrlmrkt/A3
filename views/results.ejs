@@ -17,7 +17,9 @@
 		<div id="results_page" class="main">
 			<h4>results</h4>
 			<span class="result post">
-				
+				  <% if (name) { %>
+				  <%= name.local.username %>
+				  <% }%>
 			</span>
 			<span class="result post">
 				
@@ -29,5 +31,3 @@
     <% include partials/footer.ejs %>
 </footer>
 </html>
-
-

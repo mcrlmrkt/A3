@@ -450,6 +450,57 @@ module.exports = function(app, passport){
 		});
 	});
 
+	app.post('/search', function(req, res){
+			mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
+						if(!err) {
+						   console.log("We are connected");
+						}
+
+						User.findOne( { 'local.username': req.body.search}, function(err, name){
+				//query.exec(function(err, reuslts){
+					if(err)
+						return done(err);
+	                if(!name){
+						Course.findOne( { 'local.coursename': req.body.search}, function(err, cname){
+				//query.exec(function(err, reuslts){
+					if(err)
+						return done(err);
+					res.render('./results.ejs', { 
+					user:req.user,
+					title: 'Course Tackle - Course Search Result',
+					name: cname});
+
+						//return done(null, Course);
+					
+				});}
+					res.render('./results.ejs', { 
+					user:req.user,
+					title: 'Course Tackle - User Search Result',
+					name: name});
+
+						//return done(null, Course);
+					
+				});
+
+
+
+						//User.find({'local.username':search});
+						//console.log("found"+u);
+						//db.close();
+			});
+						//var user_filtered = fuzzy.filter(search, User.username);
+	  					//var name_filtered = fuzzy.filter(search, User.firstName+''+User.lastName);
+	  					//var course_filtered = fuzzy.filter(search, Course.courseName);
+	  					//var code_filtered = fuzzy.filter(search, Course.courseCode);
+	  					//var matches = user_filtered.map(function(e1) { return el.string; });
+	  					//console.log(user);
+	  					//console.log(user_filtered);
+	  					//console.log(name_filtered);
+	  					//console.log(course_filtered);
+	  					//console.log(code_filtered);
+			
+		});
+
 	app.get('/left_panel', function(req, res) {
 		console.log(req.files);
 	  	res.render('./partials/left_panel.ejs', { title: 'ONIX Validator' });
