@@ -29,6 +29,7 @@ module.exports = function(app, passport){
 	app.post('/auth/google/callback', passport.authenticate('local-googlePlus-login'), function(req, res) {
   		// Return user profile back to client
   		res.send(req.user);
+  		res.redirect('back');
 	});
 	app.get('/newsfeed', isLoggedIn, function(req, res, next) {
 		console.log(req.files);
@@ -164,7 +165,7 @@ module.exports = function(app, passport){
 								console.log(collection);
 								res.render('./course.ejs', { 
 									title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-					 				user:req.user, collection: collection});
+					 				user:req.user, collection: collection, friendlist: friendlist});
 							}
 							else {
 								var subject = course.local.field;
@@ -288,6 +289,7 @@ module.exports = function(app, passport){
 				});
 			}
 		});
+		res.redirect('back');
 	});
 
 	app.get('/replyFriend', isLoggedIn, function(req, res) {
@@ -314,6 +316,7 @@ module.exports = function(app, passport){
 				console.log("Replying to friends");
 			}
 		});
+		res.redirect('back');
 	});
 
 	app.post('/friendReq', function(req, res){
