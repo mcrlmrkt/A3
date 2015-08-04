@@ -15,15 +15,14 @@
     	<% include partials/left_panel.ejs %>
 		<div id="wall" class="main">
 			<h4>wall</h4>
-			<form id="post_wall" method="post" action="/profile">
-				<input type="text" value="say something here..." id="wall_entry" onclick="this.focus();this.select()"/>
-				<button id="wall_submit">Submit</button>
-			</form>
-			<span class="wall_post post">
-				user comments
-			</span><span class="wall_post post">
-				user comments
+			<span class="wall_post">
+				<% for (var i=0; i<entries.length; i++) { %>
+			<span id="wall_entry<%=i%>">
+				<h4><%=entries[i].post.from_user%> says:</h4>
+				<h6><%=entries[i].post.wall_post%></h6>
+				<hr>
 			</span>
+			<% } %>
 		</div>
 	</div>
 </body>
