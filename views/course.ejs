@@ -20,6 +20,15 @@
 				<text id="add_course_taken" class="add" onclick="courses()">+</text>
 			</span>
 
+			<span class="user_wall_post post">
+				<% for (var i=0; i<courselist.length; i++) { %>
+			<span>
+				<h4><%=courselist[i].local.field%></h4>
+				<h4><%=courselist[i].local.courseName%></h4>
+				<h4><%=courselist[i].local.courseCode%></h4>
+			</span>
+			<% } %>
+			</span>
 			
 
 		</div>
