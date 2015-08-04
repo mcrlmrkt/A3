@@ -145,39 +145,49 @@ module.exports = function(app, passport){
 		var username = req.user.local.username;
 
 		process.nextTick(function(){
-			//var query = Course.find( {'local.courseCode': courseCode} );
-			Course.findOne( { 'local.courseCode': courseCode}, function(err, course){
-			//query.exec(function(err, reuslts){
-				if(err)
-					return done(err);
-				console.log("+++++++++++++++");
-				console.log(course);
-
-				if (course == null) { //if couldn't find coursecode in db
-					var collection = Course.find({'local.username': req.user.local.username});
-					console.log(collection);
-					res.render('./course.ejs', { 
-						title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-		 				user:req.user, collection: collection});
+			mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
+				if(!err) {
+				   console.log("We are connected");
 				}
-				else {
-					var subject = course.local.field;
-					var courseName = course.local.courseName;
-					var rating = course.local.rating;
-					var desc = course.local.desc;
-					var date = course.local.created_at;
+				FriendList.find({'username' : req.user.local.username }, function(err, friendlist) {
+					if(friendlist){
+						//var query = Course.find( {'local.courseCode': courseCode} );
+						Course.find( { 'local.courseCode': courseCode}, function(err, course){
+						//query.exec(function(err, reuslts){
+							if(err)
+								return done(err);
+							console.log("+++++++++++++++");
+							console.log(course);
 
-					console.log(subject+" "+courseName+" "+
-						courseCode+" "+rating+" "+desc+" "+date);
+							if (course == null) { //if couldn't find coursecode in db
+								var collection = Course.find({'local.username': req.user.local.username});
+								console.log(collection);
+								res.render('./course.ejs', { 
+									title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+					 				user:req.user, collection: collection});
+							}
+							else {
+								var subject = course.local.field;
+								var courseName = course.local.courseName;
+								var rating = course.local.rating;
+								var desc = course.local.desc;
+								var date = course.local.created_at;
 
-					//return done(null, Course);
+								console.log(subject+" "+courseName+" "+
+									courseCode+" "+rating+" "+desc+" "+date);
 
-						res.render('./course_code.ejs', { 
-							title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-		 					user:req.user, subject: subject, courseName: courseName, rating: rating, courseCode: courseCode, 
-		 					username: username, desc: desc, date: date});
-				};
+								//return done(null, Course);
+
+									res.render('./course_code.ejs', { 
+										title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+					 					user:req.user, subject: subject, courseName: courseName, rating: rating, courseCode: courseCode, 
+					 					username: username, desc: desc, date: date, friendlist: friendlist});
+							};
+						});
+					}
+				});
 			});
+
 			
 		});
 	
