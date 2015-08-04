@@ -24,7 +24,6 @@ h1, h2, h3, h4, h5, h6{
 	background: #162B30;
 	box-shadow: none;
 	opacity: 0.7;
-	display: none;
 }
 #upload_circle:hover{
 	color: black;
