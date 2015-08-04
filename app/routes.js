@@ -199,7 +199,7 @@ module.exports = function(app, passport){
 								res.render('./course_code.ejs', { 
 										title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
 					 					user:req.user, courseCode: courseCode, 
-					 					username: username, friendlist: friendlist, courselist: courselist});
+					 					username: username, friendlist: friendlist, courselist: courselist, photo: '/images/'+ username + '.jpg'});
 
 							
 						});
