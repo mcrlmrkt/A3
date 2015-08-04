@@ -295,3 +295,32 @@ hr{
 	color: black;
 
 }
+#add_user{
+	background: white;
+	border-bottom: 1px solid black;
+	font-family: 'Lato', sans-serif;
+	border-radius: 10px;
+	font-weight: 100;
+	color: black;
+	width: 35%;
+	height: 2.8vw;
+	font-size: 2vw;
+	overflow: hidden;
+	border: none;
+	margin: 2%;
+	
+}
+#submit_add{
+    background: #1A2E2F;
+    padding: 0.5%;
+    font-weight: 100;
+    font-size: 1.5vw;
+    border: none;
+    color:white;
+    width: 50%;
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+}
+#submit_add:hover{
+    background: #FFA300;
+}
