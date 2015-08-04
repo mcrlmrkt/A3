@@ -2,6 +2,7 @@ var User = require('./models/user');
 var FriendList = require('./models/friend');
 var FriendReq = require('./models/friendReq');
 var Course = require('./models/course');
+var wallPost = require('../app/models/wallPosts');
 var mongodb = require('mongodb').MongoClient;
 var url = require('url');
 
@@ -12,10 +13,8 @@ mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/cour
   }
 });
 
-
-module.exports = function(app, passport, test){
+module.exports = function(app, passport){
 //var courses = ['Anthropology','Biology', 'Chemistry', 'Computer Science', 'Mathematics', 'Physics'];
-
 
 	app.get('/', function(req, res){
 		res.render('index.ejs', { message: req.flash('loginMessage')});
@@ -134,13 +133,7 @@ module.exports = function(app, passport, test){
 		 		user:req.user});
 	});
 
-	// User Page
 
-	app.get('/user', isLoggedIn, function(req, res){
-		res.render('./user.ejs', { 
-				title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
-		 		user:req.user});
-	});
 
 	//course/csc309 example
 	app.get('/course/:courseCode', isLoggedIn, function(req, res){
@@ -325,18 +318,12 @@ module.exports = function(app, passport, test){
 	});
 
 	app.post('/newsfeed', function(req, res, done){
-			mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
-					if(!err) {
-					   console.log("We are connected");
-					}
-					if(req.user){
+			if(req.user){
 						var newPassword = req.body.settings_password;
 						var newFirstName = req.body.settings_firstName;
 						var newLastName = req.body.settings_lastName;
 						var newField = req.body.settings_field;
 						var newEmail = req.body.settings_email;
-
-						var collection = db.collection('users');
 
 						console.log('BEFORE THE CHANGE' + req.user);
 						console.log(req.user.id);
@@ -368,9 +355,70 @@ module.exports = function(app, passport, test){
 							})
 						})
 					}
-				db.close();
-			})
-		res.redirect(req.get('referer'));
+			res.redirect('back');
+	});
+
+
+	app.post('/user/:username', isLoggedIn, function(req, res){
+		
+		var to_user = req.params.username;
+		console.log('to_user is ' + to_user);
+		var username = req.user.local.username;
+		var user = User.findOne({'local.username': to_user});
+		console.log('user is ' + user);
+
+		User.findOne({'local.username': to_user}, function(err, user){
+			if (err){
+				console.log('user not found');
+				throw err;
+			} else {
+				var newPost = wallPost();
+
+				newPost.post.to_user = to_user;
+				newPost.post.from_user = req.user.local.username;
+				console.log('from_user is ' + req.user.local.username);
+				newPost.post.wall_post = req.body.wall_entry;
+				console.log('wall entry is ' + req.body.wall_entry);
+				newPost.save(function(err){
+						if(err){
+							console.log('post save error');
+							throw err;
+						}
+						else {
+							console.log('post is saved');
+							return done(null, newPost);
+						}
+			});
+		}
+	});
+			res.redirect('back');	
+	});
+
+	// // User Page
+	app.get('/user/:username', isLoggedIn, function(req, res){
+		mongodb.connect('mongodb://Muhsanah:csc309sanah@ds061158.mongolab.com:61158/coursetackle', function(err, db) {
+			User.findOne({'local.username': req.params.username}, function(err, user){
+				if(err){
+					console.log('cant find user/:username app.get');
+					throw err;
+				} else {		
+				console.log('username is ' + req.params.username);
+				wallPost.find({'post.to_user': req.params.username}, {'post.from_user': 1, 'post.wall_post': 1, _id: 0}, function(err, posts){
+					if (err){
+						console.log('there was an error finding posts to ' + req.params.username);
+						throw err;
+					} else {
+						console.log('testing posts ' + posts);
+						res.render('./user.ejs', { 
+							title: 'Course Tackle - ' + req.user.local.firstName + " " + req.user.local.lastName,
+					 		user: user,
+					 		test: '/user/' + req.params.username,
+					 		entries: posts});
+						}
+					});
+				}
+			});
+		});
 	});
 
 	app.get('/left_panel', function(req, res) {

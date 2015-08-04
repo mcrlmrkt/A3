@@ -15,12 +15,17 @@
     	<% include partials/user_left_panel.ejs %>
 		<div id="user_wall" class="main">
 			<h4>wall</h4>
-			<input type="text" value="say something here..." id="user_wall_entry" onclick="this.focus();this.select()"/>
-			<button id="wall_submit">Submit</button>
+			<form id="post_wall" method="post" >
+				<input type="text" value="say something here..." id="wall_entry" name="wall_entry" onclick="this.focus();this.select()"/>
+				<button id="wall_submit">Submit</button>
+			</form>
 			<span class="user_wall_post post">
-				user comments
-			</span><span class="wall_post post">
-				user comments
+				<% for (var i=0; i<entries.length; i++) { %>
+			<span id="user_post<%=i%>">
+				<h4><%=entries[i].from_user%> says:</h4>
+				<h6><%=entries[i].wall_post%></h6>
+			</span>
+			<% } %>
 			</span>
 		</div>
 	</div>

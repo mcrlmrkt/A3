@@ -41,7 +41,8 @@ module.exports = function(passport) {
 					newUser.save(function(err){
 						if(err)
 							throw err;
-						return done(null, newUser);
+						console.log('post is saved');
+						return done(null, newPost);
 					})
 				}
 			})

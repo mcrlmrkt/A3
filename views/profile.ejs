@@ -15,8 +15,10 @@
     	<% include partials/left_panel.ejs %>
 		<div id="wall" class="main">
 			<h4>wall</h4>
-			<input type="text" value="say something here..." id="wall_entry" onclick="this.focus();this.select()"/>
-			<button id="wall_submit">Submit</button>
+			<form id="post_wall" method="post" action="/profile">
+				<input type="text" value="say something here..." id="wall_entry" onclick="this.focus();this.select()"/>
+				<button id="wall_submit">Submit</button>
+			</form>
 			<span class="wall_post post">
 				user comments
 			</span><span class="wall_post post">

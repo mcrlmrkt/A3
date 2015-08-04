@@ -9,7 +9,6 @@ var userSchema = mongoose.Schema({
 		firstName: String,
 		lastName: String,
 		email: {type: String, required: true, lowercase: true},
-		//photo: dp
 	}
 });
 
