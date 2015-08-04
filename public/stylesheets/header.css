@@ -65,11 +65,12 @@ a:hover{
     font-family: 'Lato', sans-serif;
     font-weight: 100;
     color: #BEB5B3;
-    width: 25%;
+    width: 20%;
     height: 2.8vw;
     font-size: 2vw;
     overflow: hidden;
     border: none;
+    display: inline-block;
 }
 /*
 .main{
